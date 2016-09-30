@@ -22,14 +22,14 @@ Awesome or aweful, whatever be the service is, we take pride in saying that this
 <table width=5>
     <tr>
         <td><center><img src="https://s18.postimg.org/7r1f2wfl5/our_ninja.png">
-        <br>Priyanka Bose</td></center>
+        <br>Priyanka Bose</center></td>
         <td><center><img src="https://s18.postimg.org/7r1f2wfl5/our_ninja.png">
-        <br>Sanjana Sahayaraj</td></center>
+        <br>Sanjana Sahayaraj</center></td>
     </tr>
     <tr>
         <td><center><img src="https://s18.postimg.org/7r1f2wfl5/our_ninja.png">
-        <br>Seemanta Saha</td></center>
+        <br>Seemanta Saha</center></td>
         <td><center><img src="https://s18.postimg.org/7r1f2wfl5/our_ninja.png">
-        <br>Dipanjan Das</td></center>
+        <br>Dipanjan Das</center></td>
     </tr>
 </table>
