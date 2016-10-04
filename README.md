@@ -1,4 +1,4 @@
-# Bidding System
+# Bidding System ![Build Status](https://api.travis-ci.org/scalableinternetservices/BiddingSystem.png)
 
 The system is conceptualized to be an online bidding system where sellers can place bid on items and set a date and time when the bid ends. The customers, on the flip side, can register to the site and participate in one or more bids. As the bid ends, the system will announce the highest bidder. 
 
@@ -21,13 +21,13 @@ Awesome or aweful, whatever be the service is, we take pride in saying that this
 
 <table width=5>
     <tr>
-        <td><center><img src="https://s18.postimg.org/7r1f2wfl5/our_ninja.png">
+        <td><center><img src="https://s26.postimg.org/f94p3mp3t/priyanka.jpg">
         <br>Priyanka Bose</center></td>
         <td><center><img src="https://s18.postimg.org/7r1f2wfl5/our_ninja.png">
         <br>Sanjana Sahayaraj</center></td>
     </tr>
     <tr>
-        <td><center><img src="https://s18.postimg.org/7r1f2wfl5/our_ninja.png">
+        <td><center><img src="https://s26.postimg.org/cgbhjlord/seemanta.jpg">
         <br>Seemanta Saha</center></td>
         <td><center><img src="https://s18.postimg.org/7r1f2wfl5/our_ninja.png">
         <br>Dipanjan Das</center></td>
