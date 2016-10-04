@@ -23,7 +23,7 @@ Awesome or aweful, whatever be the service, we take pride in saying that this is
     <tr>
         <td><center><img src="https://s26.postimg.org/f94p3mp3t/priyanka.jpg">
         <br>Priyanka Bose</center></td>
-        <td><center><img src="https://s18.postimg.org/7r1f2wfl5/our_ninja.png">
+        <td><center><img src="https://s22.postimg.org/nfytfoqu9/sanjana.jpg">
         <br>Sanjana Sahayaraj</center></td>
     </tr>
     <tr>
