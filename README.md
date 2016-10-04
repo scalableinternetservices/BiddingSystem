@@ -17,7 +17,7 @@ The system may suffer from scalability issues with respect to one or more of the
 ---
 
 # Brains Behind
-Awesome or aweful, whatever be the service is, we take pride in saying that this is *our* brain-child.
+Awesome or aweful, whatever be the service, we take pride in saying that this is *our* brain-child.
 
 <table width=5>
     <tr>
