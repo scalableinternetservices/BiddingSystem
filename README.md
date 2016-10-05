@@ -29,7 +29,7 @@ Awesome or aweful, whatever be the service, we take pride in saying that this is
     <tr>
         <td><center><img src="https://s26.postimg.org/cgbhjlord/seemanta.jpg">
         <br>Seemanta Saha</center></td>
-        <td><center><img src="https://s18.postimg.org/7r1f2wfl5/our_ninja.png">
+        <td><center><img src="https://s26.postimg.org/7lmdz2ftl/dipanjan.png">
         <br>Dipanjan Das</center></td>
     </tr>
 </table>
