@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  product_bid_id: 1
+  product_id: 1
+  minimum_bidding_price: 1
+  bid_status: false
+  sell_status: false
+  bid_start_date: 2016-10-18
+  bid_start_time: 2016-10-18 05:55:42
+  bid_end_date: 2016-10-18
+  bid_end_time: 2016-10-18 05:55:42
+
+two:
+  product_bid_id: 1
+  product_id: 1
+  minimum_bidding_price: 1
+  bid_status: false
+  sell_status: false
+  bid_start_date: 2016-10-18
+  bid_start_time: 2016-10-18 05:55:42
+  bid_end_date: 2016-10-18
+  bid_end_time: 2016-10-18 05:55:42
