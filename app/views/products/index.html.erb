@@ -5,8 +5,7 @@
 <table>
   <thead>
     <tr>
-      <th>Bid</th>
-      <th>Added by user</th>
+      <th>User</th>
       <th>Category</th>
       <th>Name</th>
       <th>Date added</th>
@@ -18,8 +17,7 @@
   <tbody>
     <% @products.each do |product| %>
       <tr>
-        <td><%= product.bid_id %></td>
-        <td><%= product.added_by_user_id %></td>
+        <td><%= product.user_id %></td>
         <td><%= product.category_id %></td>
         <td><%= product.name %></td>
         <td><%= product.date_added %></td>
