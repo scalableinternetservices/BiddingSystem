@@ -1,2 +1,15 @@
+<!--
 <h1>PlaceBid#bid</h1>
 <p>Find me in app/views/place_bid/bid.html.erb</p>
+-->
+
+New bid amount: <input type="text" id = "bidprice">
+<input type="submit" onclick="showPrice()" value="submit" />
+<p> You have successfully placed a bid of $: <span id = "new_price"></span> </p>
+
+<script type="text/JavaScript">
+  function showPrice(){
+    var price = document.getElementById("bidprice").value;
+    new_price.innerHTML= price;
+  }
+</script>
