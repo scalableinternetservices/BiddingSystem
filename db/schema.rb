@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20161015185037) do
   create_table "products", primary_key: "product_id", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "category_id"
-    t.string   "name"
+    t.string   "name",        null: false
     t.date     "date_added"
     t.string   "location"
     t.datetime "created_at",  null: false
