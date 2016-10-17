@@ -1,44 +1,56 @@
-<%= form_for(product) do |f| %>
-	<% if product.errors.any? %>
-		<div id="error_explanation">
-			<h2>
-				<%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
-			<ul>
-				<% product.errors.full_messages.each do |message| %>
-					<li>
-						<%= message %>
-					</li>
-				<% end %>
-			</ul>
-		</div>
-	<% end %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="panel panel-primary">
+                <div class="panel-heading"><%= action %></div>
+                <div class="panel-body">
 
-	<div class="field">
-		<%= f.label :name %>
-			<%= f.text_field :name %>
-	</div>
-	
-	<div class="field">
-	    <%= f.label :category_id %>
-	        <%= f.select :category_id, [['Electronics', '1'], ['Household', '2']] %>
+                    <%= form_for(product) do |f| %>
+                        <% if product.errors.any? %>
+                            <div id="error_explanation">
+                                <h2>
+                                    <%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+                                <ul>
+                                    <% product.errors.full_messages.each do |message| %>
+                                        <li>
+                                            <%= message %>
+                                        </li>
+                                        <% end %>
+                                </ul>
+                            </div>
+                        <% end %>
+
+                        <div class="field">
+                            <%= f.label :name %>
+                                <%= f.text_field :name %>
+                        </div>
+
+                        <div class="field">
+                            <%= f.label :category_id %>
+                                <%= f.select :category_id, [['Electronics', '1'], ['Household', '2']] %>
+                        </div>
+
+                        <div class="field">
+                            <%= f.label :location %>
+                                <%= f.select :location, ["Alabama", "Alaska", "Arizona", "Arkansas", 
+	                        "California", "Colorado", "Connecticut", "Delaware",
+	                        "District of Columbia", "Florida", "Georgia", "Hawaii",
+	                        "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky",
+	                        "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan",
+	                        "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska",
+	                        "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York",
+	                        "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon",
+	                        "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota",
+	                        "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington",
+	                        "West Virginia", "Wisconsin", "Wyoming"] %>
+                        </div>
+
+                        <div class="actions">
+                            <%= f.submit action, class: "btn btn-success" %>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
     </div>
-
-	<div class="field">
-		<%= f.label :location %>
-			<%= f.select :location, ["Alabama", "Alaska", "Arizona", "Arkansas", 
-			                        "California", "Colorado", "Connecticut", "Delaware",
-			                        "District of Columbia", "Florida", "Georgia", "Hawaii",
-			                        "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky",
-			                        "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan",
-			                        "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska",
-			                        "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York",
-			                        "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon",
-			                        "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota",
-			                        "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington",
-			                        "West Virginia", "Wisconsin", "Wyoming"] %>
-	</div>
-
-	<div class="actions">
-		<%= f.submit "Add Product", class: "btn btn-success" %>
-	</div>
-<% end %>
+</div>
