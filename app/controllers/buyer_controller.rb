@@ -1,4 +1,4 @@
-class BuyerControllerController < ApplicationController
+class BuyerController < ApplicationController
   def place_bid
   end
 
