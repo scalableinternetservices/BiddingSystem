@@ -1,0 +1,2 @@
+module BuyerControllerHelper
+end
