@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :bids
   get 'place_bid/home'
 
   get 'place_bid/bid'
