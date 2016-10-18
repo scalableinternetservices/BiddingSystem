@@ -2,7 +2,10 @@ class ApplicationController < ActionController::Base
   
   protect_from_forgery with: :exception
   
-  def index
+  def home 
   end
   
+  def index
+  end
+ 
 end
