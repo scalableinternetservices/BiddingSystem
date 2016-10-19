@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20161018034457) do
 
-  create_table "categories", force: :cascade do |t|
+  create_table "categories", primary_key: "category_id", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
     t.datetime "created_at",  null: false
