@@ -10,12 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161015185037) do
+ActiveRecord::Schema.define(version: 20161018034457) do
+
+  create_table "categories", primary_key: "category_id", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "products", primary_key: "product_id", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "category_id"
-    t.string   "name",        null: false
+    t.string   "name"
     t.date     "date_added"
     t.string   "location"
     t.datetime "created_at",  null: false
