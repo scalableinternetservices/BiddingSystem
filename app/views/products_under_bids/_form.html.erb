@@ -1,0 +1,62 @@
+<%= form_for(products_under_bid) do |f| %>
+  <% if products_under_bid.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(products_under_bid.errors.count, "error") %> prohibited this products_under_bid from being saved:</h2>
+
+      <ul>
+      <% products_under_bid.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :product_bid_id %>
+    <%= f.number_field :product_bid_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :product_id %>
+    <%= f.number_field :product_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :minimum_bidding_price %>
+    <%= f.number_field :minimum_bidding_price %>
+  </div>
+
+  <div class="field">
+    <%= f.label :bid_status %>
+    <%= f.check_box :bid_status %>
+  </div>
+
+  <div class="field">
+    <%= f.label :sell_status %>
+    <%= f.check_box :sell_status %>
+  </div>
+
+  <div class="field">
+    <%= f.label :bid_start_date %>
+    <%= f.date_select :bid_start_date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :bid_start_time %>
+    <%= f.time_select :bid_start_time %>
+  </div>
+
+  <div class="field">
+    <%= f.label :bid_end_date %>
+    <%= f.date_select :bid_end_date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :bid_end_time %>
+    <%= f.time_select :bid_end_time %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
