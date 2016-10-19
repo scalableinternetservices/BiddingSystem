@@ -5,13 +5,13 @@
                 <div class="panel-heading"><%= action %></div>
                 <div class="panel-body">
 
-                    <%= form_for(bid) do |f| %>
-                        <% if bid.errors.any? %>
+                    <%= form_for(category) do |f| %>
+                        <% if category.errors.any? %>
                             <div id="error_explanation">
                                 <h2>
-                                    <%= pluralize(bid.errors.count, "error") %> prohibited this bid from being saved:</h2>
+                                    <%= pluralize(category.errors.count, "error") %> prohibited this category from being saved:</h2>
                                 <ul>
-                                    <% bid.errors.full_messages.each do |message| %>
+                                    <% category.errors.full_messages.each do |message| %>
                                         <li>
                                             <%= message %>
                                         </li>
@@ -21,24 +21,14 @@
                         <% end %>
 
                         <div class="field">
-                            <%= f.label :bid_amount %>
-                                <%= f.text_field :bid_amount %>
-                        </div>
-
-                        
-                        <div class="field">
-                            <%= f.label :user_id %>
-                                <%= f.text_field :user_id%>
-	   
+                          <%= f.label :name %>
+                          <%= f.text_field :name %>
                         </div>
                         
                         <div class="field">
-                          <%=f.label:product_id%>
-                              <%= f.text_field :product_id%>
-                          <p>Kettle
-                          <%= image_tag('dummy_product.png', style: "height: 40px") %>
-	                        </p>
-                        </div>                        
+                          <%= f.label :description %>
+                          <%= f.text_field :description %>
+                        </div>
 
                         <div class="actions">
                             <%= f.submit action, class: "btn btn-success" %>

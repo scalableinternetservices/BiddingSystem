@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
-  resources :bids
+  resources :categories, param: :category_id
+  resources :bids, param: :bid_id
+  resources :products, param: :product_id
+  
   get 'place_bid/home'
 
   get 'place_bid/bid'
@@ -8,7 +11,7 @@ Rails.application.routes.draw do
   get 'home/home'
 
 
-  resources :products, param: :product_id
+  
   
   # Application root
   root 'application#index'

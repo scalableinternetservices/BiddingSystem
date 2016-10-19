@@ -1,7 +1,7 @@
 class CreateBids < ActiveRecord::Migration[5.0]
   def change
-    create_table :bids do |t|
-      t.integer :bid_id
+    create_table :bids id: false do |t|
+      t.primary_key :bid_id
       t.integer :product_id
       t.integer :user_id
       t.integer :bid_amount

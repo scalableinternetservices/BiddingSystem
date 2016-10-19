@@ -10,6 +10,7 @@ class BidsController < ApplicationController
   # GET /bids/1
   # GET /bids/1.json
   def show
+    @bid= Bid.find params[:bid_id]
   end
 
   # GET /bids/new
@@ -19,12 +20,14 @@ class BidsController < ApplicationController
 
   # GET /bids/1/edit
   def edit
+    @bid= Bid.find(params[:bid_id])
   end
 
   # POST /bids
   # POST /bids.json
   def create
     @bid = Bid.new(bid_params)
+    
 
     respond_to do |format|
       if @bid.save
@@ -36,6 +39,7 @@ class BidsController < ApplicationController
       end
     end
   end
+
 
   # PATCH/PUT /bids/1
   # PATCH/PUT /bids/1.json
@@ -64,11 +68,11 @@ class BidsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_bid
-      @bid = Bid.find(params[:id])
+      @bid = Bid.find(params[:bid_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bid_params
-      params.require(:bid).permit(:bid_id, :product_id, :user_id, :bid_amount, :bidding_date, :bidding_time)
+      params.require(:bid).permit(:product_id, :user_id, :bid_amount, :bidding_date, :bidding_time)
     end
 end
