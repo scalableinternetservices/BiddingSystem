@@ -24,10 +24,10 @@
                             <%= f.label :name %>
                                 <%= f.text_field :name %>
                         </div>
-
+                        
                         <div class="field">
                             <%= f.label :category_id %>
-                                <%= f.select :category_id, [['Electronics', '1'], ['Household', '2']] %>
+                                <%= f.select :category_id, categories.map { |c| [c.name, c.category_id] } %>
                         </div>
 
                         <div class="field">
