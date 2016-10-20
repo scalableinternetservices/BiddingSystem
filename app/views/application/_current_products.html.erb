@@ -5,9 +5,12 @@
         <div class="col-md-12"> <p class="lead">Current Products</p> </div>
         <div class="col-sm-4 col-lg-4 col-md-4">
             <div class="thumbnail">
-                <img src="http://placehold.it/320x150" alt="">
+                <%= image_tag('dummy_product.png', style: "height: 120px") %> <!-- added an image -->
                 <div class="caption">
-                    <h4 class="pull-right">$24.99</h4>
+                    <h4 class="pull-right">
+                      <!-- <%= @curr_bid %>  tried to display the price of that product after bid from DB, but currently not showing anything-->
+                      $22.25
+                    </h4>
                     <h4><a href="#">First Product</a>
                     </h4>
                     <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
@@ -22,7 +25,8 @@
                         <span class="glyphicon glyphicon-star"></span>
                     </p>
                 </div>
-                <div class="span7 text-center"><h4><a href="#">Bid your price</a></h4></div>
+                <div class="span7 text-center"><h4><a href="bids/new.html">Bid your price</a></h4></div> <!-- place bid for this one product, just for demo -->
+            
             </div>
         </div>
 
@@ -51,9 +55,9 @@
 
         <div class="col-sm-4 col-lg-4 col-md-4">
             <div class="thumbnail">
-                <img src="http://placehold.it/320x150" alt="">
+                <%= image_tag('p1.jpg', style: "height: 120px") %> <!-- added an image for some product -->
                 <div class="caption">
-                    <h4 class="pull-right">$74.99</h4>
+                    
                     <h4><a href="#">Third Product</a>
                     </h4>
                     <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -73,3 +77,5 @@
         </div>
     </div>
 </div>
+
+
