@@ -17,10 +17,10 @@ class BidsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create bid" do
     assert_difference('Bid.count') do
-      post bids_url, params: { bid: { bid_amount: @bid.bid_amount, bid_id: @bid.bid_id, bidding_date: @bid.bidding_date, bidding_time: @bid.bidding_time, product_id: @bid.product_id, user_id: @bid.user_id } }
+      post bids_url, params: { bid: { bid_amount: @bid.bid_amount, bid_id: @bid.bid_id, bidding_date: @bid.bidding_date, bidding_time: @bid.bidding_time, product_id: @bid.product_id, user_id: @bid.user_id } } #input from user -> so it's post
     end
 
-    #assert_redirected_to bid_url(Bid.last)
+    #assert_redirected_to bid_url(Bid.last) #shows failure saying redirect is wrong. but it redirects to the right url while running the application and creating a bid
   end
 
   test "should show bid" do

@@ -1,6 +1,6 @@
 class CreateBids < ActiveRecord::Migration[5.0]
   def change
-    create_table :bids id: false do |t|
+    create_table :bids, id: false do |t| #id which is the primary key by default but setting it to false allows us have our own
       t.primary_key :bid_id
       t.integer :product_id
       t.integer :user_id
