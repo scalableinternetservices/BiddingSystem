@@ -10,8 +10,8 @@ class BidsController < ApplicationController
   # GET /bids/1
   # GET /bids/1.json
   def show
-    @bid= Bid.find params[:bid_id]
   end
+
 
   # GET /bids/new
   def new
@@ -20,7 +20,10 @@ class BidsController < ApplicationController
 
   # GET /bids/1/edit
   def edit
-    @bid= Bid.find(params[:bid_id])
+  end
+  
+  def get_bid
+    @curr_bid=Bid.get_bid
   end
 
   # POST /bids
@@ -38,6 +41,7 @@ class BidsController < ApplicationController
         format.json { render json: @bid.errors, status: :unprocessable_entity }
       end
     end
+    
   end
 
 
@@ -53,6 +57,7 @@ class BidsController < ApplicationController
         format.json { render json: @bid.errors, status: :unprocessable_entity }
       end
     end
+    
   end
 
   # DELETE /bids/1
@@ -63,6 +68,7 @@ class BidsController < ApplicationController
       format.html { redirect_to bids_url, notice: 'Bid was successfully destroyed.' }
       format.json { head :no_content }
     end
+    
   end
 
   private
