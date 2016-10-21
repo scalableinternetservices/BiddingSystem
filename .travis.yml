@@ -3,10 +3,6 @@ rvm:
 - 2.3.0
 cache: bundler
 sudo: false
-deploy:
-  provider: heroku
-  api_key:
-    secure: cAuXX8+1iL0kYCXyBysMWzXNPFUQw9vZFl/c/12oyc7xlYXasrNRQuUWeOE5jNcwAsj8hzh4GIy9XI92OupqYBpBUZeayM/64rFdZUDec/K7/XV3QzOy097mO/rMeg1zYvI03oNblkr9tB5JTiiJ5dXe0wiLm1wRO8UzPb/1NWDDLHRxqdCg4v0ySYhLxG9+S0iosJqw9OfTLPTDO4MsRlnES6ylSJly7DoM3mqqBGRZZ1AGBbEYnBYHpjaJFquWMZALkXhGTKIhr+HrZJagU5wifAnsIrwIaiOxagpL/T/XucuvEgUKlKW90Nkpsa6mtcCFMQWrdT7ZfkYUN4CLXbWhLFfVN4c2+QtTDBzKbU8TzNhOVSNCUajd39gWRwgTMBxMZnNc1+E/+K5vlcSdBgCB/HuDHuV+FRAeIxYdXOlxLP6yDGRzibUZmWML+OKA73sgSN+wa3SZdHk21BZ5hX6TStnG8B6nzO9bOBxraA5QWg/Eeb0ZkTt+lRnkEpw5aD4mrWNCMxIdyMJL+IbL1PSA66OeuJ66lyOJVFp9yBiLzba/qoUETDYhXFM5RiQ7WgGt4Uyati7MIrzu4TbYsvdhul10MiklMleb3U4o75PjwYe58p4fWcUoVMnB46RKcVZZ5xHMQotXC/x0qc4jjeJ61Zp5ksyFgniSDt4p0oo=
-  app: biddingsystem
-  on:
-    repo: scalableinternetservices/BiddingSystem
+script: 
+- RAILS_ENV=test bundle exec rake db:migrate --trace
+- bundle exec rake db:test:prepare
