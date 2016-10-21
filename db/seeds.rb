@@ -5,4 +5,5 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-ProductsUnderBid.create(product_id: 1, minimum_bidding_price: 24, bid_status: true, sell_status: false, bid_start_date: Date.today.to_formatted_s(:date), bid_start_time: "10:20", bid_end_date: Date.today.to_formatted_s(:date), bid_end_time: Time.zone.now.to_formatted_s(:time))
+#ProductsUnderBid.create(product_id: 1, minimum_bidding_price: 24, bid_status: true, sell_status: false, bid_start_date: Date.today.to_formatted_s(:date), bid_start_time: "10:20", bid_end_date: Date.today.to_formatted_s(:date), bid_end_time: Time.zone.now.to_formatted_s(:time))
+ProductsUnderBid.create(product_id: 1, minimum_bidding_price: 24, bid_status: true, sell_status: false, bid_start_date: nil, bid_start_time: nil, bid_end_date: nil, bid_end_time: nil)

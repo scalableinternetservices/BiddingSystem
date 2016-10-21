@@ -1,5 +1,7 @@
 class ProductsUnderBid < ApplicationRecord
     
+    #attr_accessor :product_bid_id, :product_id, :minimum_bidding_price, :bid_status, :sell_status, :bid_start_date, :bid_start_time, :bid_end_date, :bid_end_time
+    
     validates :product_id, :presence => true
     validates :minimum_bidding_price, :presence => true
     validates :bid_status, :inclusion => { :in => [true, false]}
@@ -7,17 +9,26 @@ class ProductsUnderBid < ApplicationRecord
     
     self.primary_key = 'product_bid_id'
 
-    def start_bid?
-        self.bid_start_date = Date.today.to_formatted_s(:date)
-        self.bid_start_time = Time.zone.now.to_formatted_s(:time)
-        self.bid_status = true 
-        self.bid_start_date != nil && @bid_start_time !=nil
+    def self.start_bid?(product_id, minimum_bidding_price, bid_start_date, bid_start_time, bid_end_date, bid_end_time)
+        
+        if bid_start_date == nil && bid_start_time == nil
+            bid_start_date = Date.today.to_formatted_s(:date)
+            bid_start_time = Time.zone.now.to_formatted_s(:time)
+        end
+        
+        bid_status = true
+        sell_status = false
+        #puts product_id, minimum_bidding_price, bid_status, sell_status, bid_start_date, bid_start_time, bid_end_date, bid_end_time
+        product_under_bid = ProductsUnderBid.new(product_id: product_id, minimum_bidding_price: minimum_bidding_price, 
+                                                bid_status: bid_status, sell_status: sell_status, bid_start_date: bid_start_date, 
+                                                bid_start_time: bid_start_time, bid_end_date: bid_end_date, bid_end_time: bid_end_time)
+        product_under_bid.save
     end
     
-    def stop_bid?
-        self.bid_end_date = Date.today.to_formatted_s(:date)
-        self.bid_end_time = Time.zone.now.to_formatted_s("12:23")
-        self.bid_end_date != nil && @bid_end_time !=nil
+    def self.stop_bid?(product_bid_id)
+        product_under_bid = ProductsUnderBid.find(product_bid_id)
+        product_under_bid.update_attributes(:bid_status => false , :sell_status => true)
+        product_under_bid.save
     end
 
     def self.get_products_under_bid
