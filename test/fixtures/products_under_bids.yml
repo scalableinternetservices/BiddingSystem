@@ -2,7 +2,7 @@
 
 one:
   product_bid_id: 22
-  product_id: 6
+  product_id: "6"
   minimum_bidding_price: 34
   bid_status: false
   sell_status: false

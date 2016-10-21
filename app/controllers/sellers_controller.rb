@@ -5,8 +5,11 @@ class SellersController < ApplicationController
         product_id = params[:products_under_bid][:product_id]
         minimum_bidding_price = params[:products_under_bid][:minimum_bidding_price]
         now = params[:products_under_bid][:now]
+       # puts now.class
+       # puts product_id.class
         
-        if !now
+        if now == "true"
+            #puts "i m here"
             bid_start_date = nil
             bid_start_time = nil
         else
@@ -22,7 +25,10 @@ class SellersController < ApplicationController
         has_bid_started = ProductsUnderBid.start_bid?(product_id, minimum_bidding_price, bid_start_date, bid_start_time, bid_end_date, bid_end_time)
         if has_bid_started
             puts "Bidding is on!!"
+        else
+            puts "Bidding is off!!"
         end
+        #@q = ProductsUnderBid.new(products_under_bid_params)
     end
     
     def stop_bid
@@ -33,5 +39,15 @@ class SellersController < ApplicationController
         if has_bid_stopped
           puts "Bid is over"
         end
+    end
+    private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_products_under_bid
+      @products_under_bid = ProductsUnderBid.find(params[:product_bid_id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def products_under_bid_params
+      params.require(:products_under_bid).permit(:product_bid_id, :product_id, :minimum_bidding_price, :bid_status, :sell_status, :bid_start_date, :bid_start_time, :bid_end_date, :bid_end_time)
     end
 end
