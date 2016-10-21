@@ -18,8 +18,8 @@ class SellersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
   
-  '''test "should stop bid" do
+  test "should stop bid" do
     post stop_bid_sellers_url, params: { products_under_bid: { product_bid_id: @products_under_bid.product_bid_id} }
     assert_response :success
-  end'''
+  end
 end

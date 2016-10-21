@@ -1,6 +1,5 @@
+
 class ProductsUnderBid < ApplicationRecord
-    
-    #attr_accessor :product_bid_id, :product_id, :minimum_bidding_price, :bid_status, :sell_status, :bid_start_date, :bid_start_time, :bid_end_date, :bid_end_time
     
     validates :product_id, :presence => true
     validates :minimum_bidding_price, :presence => true
@@ -41,7 +40,7 @@ class ProductsUnderBid < ApplicationRecord
         products_under_bid_list
     end
     
-    def search_products_under_bid
+    def self.search_products_under_bid(name: "all", category: "all", highest_bid: 0)
         
     end
 end
