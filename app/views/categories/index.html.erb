@@ -8,7 +8,7 @@
       <div class="panel panel-primary">
         <div class="panel-heading">Categories</div>
         <div class="panel-body">
-          <table class="table">
+          <table id="categories" class="table">
             <thead>
               <tr>
                 <th>Name</th>
@@ -39,6 +39,9 @@
                 <% end %>
             </tbody>
           </table>
+          <div id="paginate">
+            <%= will_paginate @categories, renderer: BootstrapPagination::Rails %>
+          </div>
         </div>
       </div>
     </div>
