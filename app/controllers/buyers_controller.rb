@@ -1,4 +1,4 @@
-class BuyerController < ApplicationController
+class BuyersController < ApplicationController
     
     def get_products_under_bid
         @products_under_bid = ProductsUnderBid.get_products_under_bid
