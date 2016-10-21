@@ -45,3 +45,7 @@ Product.create(user_id: 2, category_id: 7, name: "Kutchina Fieona SS", date_adde
 Product.create(user_id: 1, category_id: 2, name: "Nikon D750", date_added: Date.today, location: locations[15])
 Product.create(user_id: 3, category_id: 5, name: "iPhone 6S", date_added: Date.today, location: locations[19])
 Product.create(user_id: 6, category_id: 9, name: "Macbook Pro 2016", date_added: Date.today, location: locations[16])
+
+#Populate bids table
+Bid.create(product_id: 1, user_id: 2, bid_amount: 27, bidding_date: Date.today,bidding_time: Time.now)
+Bid.create(product_id: 2, user_id: 3, bid_amount: 55, bidding_date: Date.today,bidding_time: Time.now)
