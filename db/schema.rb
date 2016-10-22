@@ -39,4 +39,17 @@ ActiveRecord::Schema.define(version: 20161021221512) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "products_under_bids", primary_key: "product_bid_id", force: :cascade do |t|
+    t.integer  "product_id"
+    t.integer  "minimum_bidding_price"
+    t.boolean  "bid_status"
+    t.boolean  "sell_status"
+    t.date     "bid_start_date"
+    t.time     "bid_start_time"
+    t.date     "bid_end_date"
+    t.time     "bid_end_time"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
 end
