@@ -9,22 +9,22 @@ class Bid < ApplicationRecord
   end
   
   def self.revoke_bid?(product_id,user_id)
-    bid=Bid.where(user_id => user_id, product_id => product_id).last
+    bid=Bid.where(Bid.user_id = user_id, Bid.product_id = product_id).last
     bid.delete
   end
   
-  def self.get_highest_bid?(product_id)
-    highbid=Bid.order(bid_amount: :desc).offset(0)
-    highbid.show
+  def self.get_highest_bid1(product_id)
+    highbid=Bid.where("product_id < ?",product_id).order("bid_amount DESC").first
+    return highbid
   end
   
-  def self.get_all_bids?(product_id)
-    list=Bid.where(product_id => product_id)
+  def self.get_all_bids1(product_id)
+    list=Bid.where("product_id < ?",product_id)
     return list
   end
   
-  def self.get_bids_by_user?(user_id)
-    list=Bid.where(user_id => user_id)
+  def self.get_bids_by_user1(user_id)
+    list=Bid.where("user_id <?", user_id)
     return list
   end
 end

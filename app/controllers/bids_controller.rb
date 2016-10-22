@@ -23,17 +23,15 @@ class BidsController < ApplicationController
     def get_highest_bid
       product_id=params[:bid][:product_id]
       
-      highest_bid=Bid.get_highest_bid?(product_id)
-      if highest_bid
-        puts "The highest bid on the product is :"
-        puts highest_bid
-      end
+      highest_bid=Bid.get_highest_bid1(product_id)
+      puts "The highest bid on the product is :"
+      puts highest_bid
     end
     
     def get_all_bids
       product_id=params[:bid][:product_id]
       
-      @bidslist=Bid.get_all_bids?(product_id)
+      @bidslist=Bid.get_all_bids1(product_id)
       @bidslist.each do |bid|
         bid.show
       end
@@ -42,7 +40,7 @@ class BidsController < ApplicationController
     def get_bids_by_user
       user_id=params[:bid][:user_id]
       
-      @bidslist=Bid.get_bids_by_user?(user_id)
+      @bidslist=Bid.get_bids_by_user1(user_id)
       @bidslist.each do |bid|
         bid.show
       end
