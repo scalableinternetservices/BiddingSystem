@@ -11,6 +11,7 @@ gem 'turbolinks',   '5.0.1'
 gem 'jbuilder',     '2.4.1'
 gem "will_paginate", "~> 3.0.4" 
 gem "will_paginate-bootstrap", "~> 1.0.0" 
+gem "devise"
 
 group :development, :test do
   gem 'sqlite3', '1.3.11'

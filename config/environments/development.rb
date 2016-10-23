@@ -8,6 +8,9 @@ Rails.application.configure do
 
   # Do not eager load code on boot.
   config.eager_load = false
+  
+  # Devise -> change the host address and port accordingly
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
   # Show full error reports.
   config.consider_all_requests_local = true
@@ -26,8 +29,10 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
-  # Don't care if the mailer can't send.
+  # Don't care if the mailer can't send. Set it true for exception
   config.action_mailer.raise_delivery_errors = false
+  
+  # Need to set email configuation for password reset 
 
   config.action_mailer.perform_caching = false
 
