@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   # Application root
   root 'application#index'
   
+  devise_for :users
+  
   resources :bids, param: :bid_id
   resources :categories, param: :category_id
   resources :products, param: :product_id
@@ -41,11 +43,8 @@ Rails.application.routes.draw do
   end
   
   get 'bids/:bid_id', to: 'bids#show'
-  
   post '/bids/:bid_id', to: 'bids#show'
-  
   get 'users/searchproductsunderbid', to: 'users#search_products_under_bid', as: :search_products
-  
   get 'buyers/productsunderbid', to: 'buyers#get_products_under_bid'
   
 end

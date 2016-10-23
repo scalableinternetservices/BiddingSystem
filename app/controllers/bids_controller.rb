@@ -1,10 +1,12 @@
 class BidsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_bid, only: [:show, :edit, :update, :destroy]
 
   # GET /bids
   # GET /bids.json
   def index
     @bids = Bid.all
+    @currentUser = current_user.id
   end
   
   def place_bid

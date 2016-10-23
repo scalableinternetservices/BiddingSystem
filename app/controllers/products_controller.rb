@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   # GET /products
@@ -6,6 +7,7 @@ class ProductsController < ApplicationController
   def index
     @products = Product.paginate(page: params[:page], per_page: 10)
     @products_under_bid = ProductsUnderBid.all
+    @currentUser = current_user.id
   end
 
   # GET /products/1
