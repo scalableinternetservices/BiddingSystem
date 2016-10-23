@@ -43,6 +43,21 @@ class ProductsUnderBid < ApplicationRecord
         products_under_bid_list
     end
     
-    
-end
+    def self.search_products_under_bid(name: nil, category: nil, highest_bid: 0)
+        
+        result = Product.select("*").joins(:products_under_bid)
+        
+        if(name!= nil)
+            result = result.where('products.name' => name)
+        end
+        
+        if(category!= nil)
+            result = result.where('products.category_id' => category)
+        end
 
+        if(highest_bid != 0)
+            result = result.where("products_under_bids.maximum_bidding_price >= ?", 8).order("maximum_bidding_price DESC")
+        end
+        result
+    end
+end

@@ -49,11 +49,11 @@ Product.create(user_id: 6, category_id: 9, name: "Macbook Pro 2016", date_added:
 
 #populate ProductsUnderBid table
 
-ProductsUnderBid.create(product_id: 2, minimum_bidding_price: 34, maximum_bidding_price: 0,
+ProductsUnderBid.create(product_id: 2, minimum_bidding_price: 34, maximum_bidding_price: 11,
                                                 bid_status: true, sell_status: false, bid_start_date: Date.current, 
                                                 bid_start_time: Time.zone.now.to_formatted_s(:time), bid_end_date: Date.tomorrow, bid_end_time: Time.zone.now.to_formatted_s(:time))
 
-ProductsUnderBid.create(product_id: 4, minimum_bidding_price: 54, maximum_bidding_price: 0,
+ProductsUnderBid.create(product_id: 4, minimum_bidding_price: 54, maximum_bidding_price: 10,
                                                 bid_status: true, sell_status: false, bid_start_date: Date.current, 
                                                 bid_start_time: Time.zone.now.to_formatted_s(:time), bid_end_date: Date.tomorrow, bid_end_time: Time.zone.now.to_formatted_s(:time))
 
