@@ -7,6 +7,8 @@ class CreateProducts < ActiveRecord::Migration[5.0]
       t.string :name
       t.date :date_added
       t.string :location
+      t.belongs_to :category, index: true, foreign_key: true  
+      t.references :category, index: true
 
       t.timestamps
     end

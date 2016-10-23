@@ -37,11 +37,13 @@ ActiveRecord::Schema.define(version: 20161021221512) do
     t.string   "location"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.index ["category_id"], name: "index_products_on_category_id"
   end
 
   create_table "products_under_bids", primary_key: "product_bid_id", force: :cascade do |t|
     t.integer  "product_id"
-    t.integer  "minimum_bidding_price"
+    t.float    "minimum_bidding_price"
+    t.float    "maximum_bidding_price"
     t.boolean  "bid_status"
     t.boolean  "sell_status"
     t.date     "bid_start_date"
@@ -50,6 +52,7 @@ ActiveRecord::Schema.define(version: 20161021221512) do
     t.time     "bid_end_time"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
+    t.index ["product_id"], name: "index_products_under_bids_on_product_id"
   end
 
 end

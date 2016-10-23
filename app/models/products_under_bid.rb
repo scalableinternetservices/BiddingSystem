@@ -1,11 +1,14 @@
 
 class ProductsUnderBid < ApplicationRecord
     
+    belongs_to :product
+    
     validates :product_id, :presence => true
     validates :minimum_bidding_price, :presence => true
     validates :bid_status, :inclusion => { :in => [true, false]}
     validates :sell_status, :inclusion => { :in => [true, false]}
     
+    @maximum_bidding_price = 0
     self.primary_key = 'product_bid_id'
 
     def self.start_bid?(product_id, minimum_bidding_price, bid_start_date, bid_start_time, bid_end_date, bid_end_time)
@@ -40,8 +43,6 @@ class ProductsUnderBid < ApplicationRecord
         products_under_bid_list
     end
     
-    def self.search_products_under_bid(name: "all", category: "all", highest_bid: 0)
-        
-    end
+    
 end
 
