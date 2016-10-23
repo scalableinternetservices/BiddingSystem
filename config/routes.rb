@@ -20,6 +20,9 @@ Rails.application.routes.draw do
     end
   end
   
+  
+  get 'users/searchproductsunderbid', to: 'users#search_products_under_bid', as: :search_products
+  
   get 'buyers/productsunderbid', to: 'buyers#get_products_under_bid'
-
+  
 end

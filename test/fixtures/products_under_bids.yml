@@ -2,8 +2,9 @@
 
 one:
   product_bid_id: 22
-  product_id: "6"
+  product_id: 1
   minimum_bidding_price: 34
+  maximum_bidding_price: 9
   bid_status: false
   sell_status: false
   bid_start_date: 2016-10-18
@@ -15,6 +16,7 @@ two:
   product_bid_id: 30
   product_id: 3
   minimum_bidding_price: 1
+  maximum_bidding_price: 0
   bid_status: false
   sell_status: false
   bid_start_date: 2016-10-18
