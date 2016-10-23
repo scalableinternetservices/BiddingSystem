@@ -45,3 +45,15 @@ Product.create(user_id: 2, category_id: 7, name: "Kutchina Fieona SS", date_adde
 Product.create(user_id: 1, category_id: 2, name: "Nikon D750", date_added: Date.today, location: locations[15])
 Product.create(user_id: 3, category_id: 5, name: "iPhone 6S", date_added: Date.today, location: locations[19])
 Product.create(user_id: 6, category_id: 9, name: "Macbook Pro 2016", date_added: Date.today, location: locations[16])
+
+
+#populate ProductsUnderBid table
+
+ProductsUnderBid.create(product_id: 2, minimum_bidding_price: 34, maximum_bidding_price: 0,
+                                                bid_status: true, sell_status: false, bid_start_date: Date.current, 
+                                                bid_start_time: Time.zone.now.to_formatted_s(:time), bid_end_date: Date.tomorrow, bid_end_time: Time.zone.now.to_formatted_s(:time))
+
+ProductsUnderBid.create(product_id: 4, minimum_bidding_price: 54, maximum_bidding_price: 0,
+                                                bid_status: true, sell_status: false, bid_start_date: Date.current, 
+                                                bid_start_time: Time.zone.now.to_formatted_s(:time), bid_end_date: Date.tomorrow, bid_end_time: Time.zone.now.to_formatted_s(:time))
+

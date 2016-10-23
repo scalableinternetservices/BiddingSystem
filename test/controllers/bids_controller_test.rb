@@ -2,7 +2,7 @@ require 'test_helper'
 
 class BidsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @bid = bids(:one)
+    @bid = bids(:two)
   end
 
   test "should get index" do
