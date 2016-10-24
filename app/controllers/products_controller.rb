@@ -4,12 +4,16 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    @products = Product.paginate(page: params[:page], per_page: 10)
   end
 
   # GET /products/1
   # GET /products/1.json
   def show
+  end
+  
+  def back
+    redirect_to products_url
   end
 
   # GET /products/new

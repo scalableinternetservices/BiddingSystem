@@ -1,7 +1,12 @@
 <div class="col-md-5">
     <div class="panel panel-primary">
-        <div class="panel-heading"><p id="notice"><%= notice %></p></div>
+        <div class="panel-heading">View Product</div>
         <div class="panel-body">
+          
+          <div class="field">
+              <p id="notice"><%= notice %>
+          </div>
+          
           <div class="field">
               <p>
                 <strong>User:</strong>
@@ -33,6 +38,14 @@
                 <%= @product.location %>
               </p>
           </div>
+          
+          
+          <%= form_for( @product, :url => back_product_path( @product ), :html => { :method => :post } ) do |f| %>
+              <div class="actions">
+                  <p> <%= f.submit 'Back', class: "btn btn-success" %> </p>
+              </div>
+          <% end %>
+                
         </div>
     </div>
 </div>
