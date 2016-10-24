@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Product bid:</strong>
+  <%= @products_under_bid.product_bid_id %>
+</p>
+
+<p>
+  <strong>Product:</strong>
+  <%= @products_under_bid.product_id %>
+</p>
+
+<p>
+  <strong>Minimum bidding price:</strong>
+  <%= @products_under_bid.minimum_bidding_price %>
+</p>
+
+<p>
+  <strong>Bid status:</strong>
+  <%= @products_under_bid.bid_status %>
+</p>
+
+<p>
+  <strong>Sell status:</strong>
+  <%= @products_under_bid.sell_status %>
+</p>
+
+<p>
+  <strong>Bid start date:</strong>
+  <%= @products_under_bid.bid_start_date %>
+</p>
+
+<p>
+  <strong>Bid start time:</strong>
+  <%= @products_under_bid.bid_start_time %>
+</p>
+
+<p>
+  <strong>Bid end date:</strong>
+  <%= @products_under_bid.bid_end_date %>
+</p>
+
+<p>
+  <strong>Bid end time:</strong>
+  <%= @products_under_bid.bid_end_time %>
+</p>
+
+<%= link_to 'Edit', edit_products_under_bid_path(@products_under_bid) %> |
+<%= link_to 'Back', products_under_bids_path %>
