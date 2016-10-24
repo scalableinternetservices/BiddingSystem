@@ -11,8 +11,7 @@ class CreateProductsUnderBids < ActiveRecord::Migration[5.0]
       t.time :bid_start_time
       t.date :bid_end_date
       t.time :bid_end_time
-      t.belongs_to :product, index: true, foreign_key: true  
-      t.references :product, index: true
+      t.belongs_to :product, index: true
       t.timestamps
     end
   end
