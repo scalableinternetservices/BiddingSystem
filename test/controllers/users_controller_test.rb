@@ -5,7 +5,11 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   #   assert true
   # end
   setup do
-    @products_under_bid = products_under_bids(:one)
-    #puts @products_under_bid.product_id.class
+    
+  end
+  
+  test "should search products under bid" do
+    get search_products_url, params: { name: "Canon EOS Rebel T5i", category: 2, highest_bid: 9, format: "json" }
+    assert_response :success
   end
 end
