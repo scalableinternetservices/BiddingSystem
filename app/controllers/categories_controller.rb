@@ -6,7 +6,6 @@ class CategoriesController < ApplicationController
   # GET /categories.json
   def index
     @categories = Category.paginate(page: params[:page], per_page: 5)
-    @currentUser = current_user.id
   end
 
   # GET /categories/1
