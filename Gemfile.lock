@@ -90,8 +90,8 @@ GEM
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
-    pg (0.19.0)
     orm_adapter (0.5.0)
+    pg (0.19.0)
     pkg-config (1.1.7)
     puma (3.4.0)
     rack (2.0.1)
@@ -174,11 +174,8 @@ PLATFORMS
 DEPENDENCIES
   byebug (= 9.0.0)
   coffee-rails (= 4.2.1)
-<<<<<<< 77e4d2a0c25900907f060ca374d827c84241b48d
-  foreigner
-=======
   devise
->>>>>>> Devise Authentication of users
+  foreigner
   jbuilder (= 2.4.1)
   jquery-rails (= 4.1.1)
   listen (= 3.0.8)
