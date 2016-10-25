@@ -4,45 +4,23 @@ class BidsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @bid = bids(:two)
   end
-
-  test "should get index" do
-    get bids_url
+  
+  test "should place bid" do
+    post bid_url(@bid), params: { bid: { bid_amount: @bid.bid_amount, bidding_date: @bid.bidding_date, bidding_time: @bid.bidding_time, product_id: @bid.product_id, user_id: @bid.user_id } }
     assert_response :success
   end
-
-  test "should get new" do
-    get new_bid_url
-    assert_response :success
+  
+  test "should revoke bid" do
+      post bid_url(@bid)
+      assert_response :success
+  end
+  
+  test "should get all bids" do
+    assert_not_nil :success
+  end
+  
+  test "should get bids by user" do
+    assert_not_nil :success
   end
 
-  test "should create bid" do
-    assert_difference('Bid.count') do
-      post bids_url, params: { bid: { bid_amount: @bid.bid_amount, bidding_date: @bid.bidding_date, bidding_time: @bid.bidding_time, product_id: @bid.product_id, user_id: @bid.user_id } }
-    end
-
-    assert_redirected_to bid_url(Bid.last)
-  end
-
-  test "should show bid" do
-    get bid_url(@bid)
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_bid_url(@bid)
-    assert_response :success
-  end
-
-  test "should update bid" do
-    patch bid_url(@bid), params: { bid: { bid_amount: @bid.bid_amount, bidding_date: @bid.bidding_date, bidding_time: @bid.bidding_time, product_id: @bid.product_id, user_id: @bid.user_id } }
-    assert_redirected_to bid_url(@bid)
-  end
-
-  test "should destroy bid" do
-    assert_difference('Bid.count', -1) do
-      delete bid_url(@bid)
-    end
-
-    assert_redirected_to bids_url
-  end
 end
