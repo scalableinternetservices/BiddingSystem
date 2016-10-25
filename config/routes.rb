@@ -40,6 +40,9 @@ Rails.application.routes.draw do
     end
   end
   
+  get 'bids/:bid_id', to: 'bids#show'
+  
+  post '/bids/:bid_id', to: 'bids#show'
   
   get 'users/searchproductsunderbid', to: 'users#search_products_under_bid', as: :search_products
   

@@ -37,7 +37,6 @@ ActiveRecord::Schema.define(version: 20161021221512) do
     t.integer  "location_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["category_id"], name: "index_products_on_category_id"
   end
 
   create_table "products_under_bids", primary_key: "product_bid_id", force: :cascade do |t|
