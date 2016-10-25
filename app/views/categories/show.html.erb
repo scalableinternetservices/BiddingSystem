@@ -1,11 +1,32 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @category.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @category.description %>
-</p>
+<div class="col-md-5">
+    <div class="panel panel-primary">
+        <div class="panel-heading">View Category</div>
+        <div class="panel-body">
+          
+          <div class="field">
+              <p id="notice"><%= notice %>
+          </div>
+          
+          <div class="field">
+              <p>
+                <strong>Name:</strong>
+                <%= @category.name %>
+              </p>
+          </div>
+          
+          <div class="field">
+              <p>
+                <strong>Description:</strong>
+                <%= @category.description %>
+              </p>
+          </div>
+          
+          <%= form_for( @category, :url => back_category_path( @category ), :html => { :method => :post } ) do |f| %>
+              <div class="actions">
+                  <p> <%= f.submit 'Back', class: "btn btn-success" %> </p>
+              </div>
+          <% end %>
+          
+        </div>
+    </div>
+</div>

@@ -20,6 +20,18 @@ Rails.application.routes.draw do
     end
   end
   
+  resources :products do
+    member do 
+        post 'back'
+    end
+  end
+  
+  resources :categories do
+    member do 
+        post 'back'
+    end
+  end
+  
   
   get 'users/searchproductsunderbid', to: 'users#search_products_under_bid', as: :search_products
   

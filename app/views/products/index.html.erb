@@ -45,6 +45,9 @@
             <% end %>
         </tbody>
       </table>
+      <div id="paginate">
+           <%= will_paginate @products, renderer: BootstrapPagination::Rails %>
+      </div>
     </div>
   </div>
 </div>

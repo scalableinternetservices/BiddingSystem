@@ -5,12 +5,15 @@ class CategoriesController < ApplicationController
   # GET /categories.json
   def index
     @categories = Category.paginate(page: params[:page], per_page: 5)
-    
   end
 
   # GET /categories/1
   # GET /categories/1.json
   def show
+  end
+  
+  def back
+    redirect_to categories_url
   end
 
   # GET /categories/new
