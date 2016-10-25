@@ -1,6 +1,12 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
+  def random_latest_products
+    @latest_products = Product.where(product_id: Product.last(10).pluck(:product_id).sample(3))
+  end
+  
+  before_filter  :random_latest_products
+
   # GET /products
   # GET /products.json
   def index
