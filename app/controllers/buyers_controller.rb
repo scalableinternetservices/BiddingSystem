@@ -1,5 +1,13 @@
 class BuyersController < UsersController
     
+    def search
+        render "search"
+    end
+    
+    def search_product
+        render "search"
+    end
+    
     def get_products_under_bid
         @products_under_bid = ProductsUnderBid.get_products_under_bid
         

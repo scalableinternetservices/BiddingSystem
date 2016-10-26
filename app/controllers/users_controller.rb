@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+    
     def search_products_under_bid
 
         product_name = params[:name]
@@ -15,7 +16,9 @@ class UsersController < ApplicationController
     
     private
     # Never trust parameters from the scary internet, only allow the white list through.
+    
     def search_params
       params.require(:search).permit(:name, :category_id, :highest_bid)
     end
+    
 end
