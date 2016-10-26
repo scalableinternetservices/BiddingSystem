@@ -16,26 +16,19 @@ class BuyersController < UsersController
     end
 
     def search
-        render "search"
     end
     
-    def search_product
+    def search_products
         search_name = params[:search][:name]
         search_category = params[:search][:category_id].to_i
         search_location = params[:search][:location]
         search_highest_bid = params[:search][:highest_bid].to_f
-        @matching_products = ProductsUnderBid.search_products_under_bid(search_name, search_category, search_highest_bid)
-        puts "Matching products", @matching_products.map { |c| c.name }
-        puts "Search params: ", search_name, search_category, search_location, search_highest_bid
+        @matching_products = ProductsUnderBid.search_products_under_bid(name: search_name, category_id: search_category, 
+                                                                        location: search_location, highest_bid: search_highest_bid)
     end
     
-    def get_products_under_bid
+    def ongoing_auctions
         @products_under_bid = ProductsUnderBid.get_products_under_bid
-        
-        respond_to do |format|
-            format.html { redirect_to @products_under_bid, notice: 'Products under bid was successfully created.' }
-            format.json { render json: @products_under_bid }
-        end
     end
 
 end

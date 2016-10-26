@@ -17,7 +17,8 @@ Rails.application.routes.draw do
   resources :buyers do
     collection do
       get 'search'
-      post 'search_product'
+      post 'search_products'
+      get 'ongoing_auctions'
     end
   end
   

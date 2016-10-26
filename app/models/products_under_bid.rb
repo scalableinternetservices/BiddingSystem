@@ -20,7 +20,6 @@ class ProductsUnderBid < ApplicationRecord
         
         bid_status = true
         sell_status = false
-        #puts product_id, minimum_bidding_price, bid_status, sell_status, bid_start_date, bid_start_time, bid_end_date, bid_end_time
         product_under_bid = ProductsUnderBid.new(product_id: product_id, minimum_bidding_price: minimum_bidding_price, 
                                                 bid_status: bid_status, sell_status: sell_status, bid_start_date: bid_start_date, 
                                                 bid_start_time: bid_start_time, bid_end_date: bid_end_date, bid_end_time: bid_end_time)
@@ -34,24 +33,22 @@ class ProductsUnderBid < ApplicationRecord
     end
 
     def self.get_products_under_bid
-        bid_items = ProductsUnderBid.where("bid_status" => true)
-        
-        products_under_bid_list ||= []
-        bid_items.each do |bid_item|
-            products_under_bid_list << bid_item
-        end
-        products_under_bid_list
+        products_under_bid = Product.joins(:products_under_bid).where("products_under_bids.bid_status" => true)
     end
     
-    def self.search_products_under_bid(name = "", category_id = "", highest_bid = 0)
+    def self.search_products_under_bid(name: "", category_id: 0, location: "", highest_bid: 0)
         result = Product.select("*").joins(:products_under_bid)
         
         if(name != "")
             result = result.where('products.name' => name)
         end
         
-        if(category_id != "")
+        if(category_id != 0)
             result = result.where('products.category_id' => category_id)
+        end
+        
+        if(location != "")
+            result = result.where('products.location' => location)
         end
 
         if(highest_bid != 0)
