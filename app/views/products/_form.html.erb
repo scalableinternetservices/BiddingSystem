@@ -29,18 +29,8 @@
                 </div>
 
                 <div class="field">
-                    <%= f.label :location %>
-                    <%= f.select :location, ["", "Alabama", "Alaska", "Arizona", "Arkansas", 
-                    "California", "Colorado", "Connecticut", "Delaware",
-                    "District of Columbia", "Florida", "Georgia", "Hawaii",
-                    "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky",
-                    "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan",
-                    "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska",
-                    "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York",
-                    "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon",
-                    "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota",
-                    "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington",
-                    "West Virginia", "Wisconsin", "Wyoming"] %>
+                    <%= f.label :location_id %>
+                    <%= f.select :location_id, @locations.each_with_index.map { |l, l_id| [l, l_id] } %>
                 </div>
 
                 <div class="actions">

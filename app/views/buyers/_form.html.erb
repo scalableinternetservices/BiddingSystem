@@ -17,7 +17,7 @@
 
                 <div class="field">
                     <%= f.label :location %>
-                        <%= f.select :location, @locations %>
+                        <%= f.select :location_id, @locations.each_with_index.map { |l, l_id| [l, l_id] } %>
                 </div>
                 
                 <div class="field">

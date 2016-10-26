@@ -30,7 +30,7 @@
                 <%= product.date_added %>
               </td>
               <td>
-                <%= product.location %>
+                <%= @locations[product.location_id] %>
               </td>
               <td>
                 <%= link_to 'Show', product %>

@@ -6,9 +6,8 @@ class CreateProducts < ActiveRecord::Migration[5.0]
       t.integer :category_id
       t.string :name
       t.date :date_added
-      t.string :location
+      t.integer :location_id
       t.belongs_to :category, index: true
-
       t.timestamps
     end
   end
