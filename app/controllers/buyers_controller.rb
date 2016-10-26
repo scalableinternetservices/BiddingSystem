@@ -24,8 +24,8 @@ class BuyersController < UsersController
         search_category = params[:search][:category_id].to_i
         search_location = params[:search][:location]
         search_highest_bid = params[:search][:highest_bid].to_f
-        matching_products = ProductsUnderBid.search_products_under_bid(search_name, search_category, search_highest_bid)
-        puts "Matching products", matching_products.map { |c| c.name }
+        @matching_products = ProductsUnderBid.search_products_under_bid(search_name, search_category, search_highest_bid)
+        puts "Matching products", @matching_products.map { |c| c.name }
         puts "Search params: ", search_name, search_category, search_location, search_highest_bid
     end
     
