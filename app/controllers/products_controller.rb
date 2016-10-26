@@ -77,4 +77,5 @@ class ProductsController < ApplicationController
       params[:product][:user_id] = "1337"
       params.require(:product).permit(:user_id, :category_id, :name, :date_added, :location)
     end
+
 end
