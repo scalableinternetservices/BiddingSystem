@@ -10,7 +10,10 @@ Rails.application.routes.draw do
   
   resources :sellers do
     collection do
+      get 'bid'
+      get 'end_bid'
       post 'start_bid'
+      post 'stop_bid'
     end
   end
   
@@ -18,12 +21,6 @@ Rails.application.routes.draw do
     collection do
       get 'search'
       post 'search_product'
-    end
-  end
-  
-  resources :sellers do
-    collection do
-      post 'stop_bid'
     end
   end
   

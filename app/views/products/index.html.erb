@@ -41,6 +41,13 @@
               <td>
                 <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %>
               </td>
+              <td>
+                <% if @product_bid_item = @products_under_bid.find_by_product_id_and_bid_status(product.product_id, true) %>
+                <%= link_to 'Stop Bid', end_bid_sellers_path(:product_bid_id => @product_bid_item.product_bid_id) %>
+                <% else %>
+                <%= link_to 'Start Bid', bid_sellers_path(:product_id => product.product_id) %>
+                <% end %>
+              </td>
             </tr>
             <% end %>
         </tbody>
