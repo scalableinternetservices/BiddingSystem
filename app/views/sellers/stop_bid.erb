@@ -15,11 +15,6 @@
                     <%= f.label :minimum_bidding_price %>
                         <%= f.text_field :minimum_bidding_price, :value => @product_bid_item.minimum_bidding_price, :readonly => true %>
                 </div>
-                
-                <div class="field">
-                    <%= f.label :maximum_bidding_price %>
-                        <%= f.text_field :maximum_bidding_price, :value => @product_bid_item.maximum_bidding_price, :readonly => true %>
-                </div>
 
                 <div class="actions">
                     <%= f.submit "Stop Bid", class: "btn btn-success" %>
