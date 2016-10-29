@@ -3,7 +3,7 @@
         <div class="panel-heading"><%= action %></div>
         <div class="panel-body">
  
-            <%= form_for :search, url: { action: "search_product" } do |f| %>
+            <%= form_for :search, url: { action: "search_products" } do |f| %>
                 
                 <div class="field">
                     <%= f.label :name %>
@@ -17,7 +17,7 @@
 
                 <div class="field">
                     <%= f.label :location %>
-                        <%= f.select :location, @locations %>
+                        <%= f.select :location_id, @locations.each_with_index.map { |l, l_id| [l, l_id] } %>
                 </div>
                 
                 <div class="field">

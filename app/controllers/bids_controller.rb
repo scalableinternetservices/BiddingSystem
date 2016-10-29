@@ -6,69 +6,73 @@ class BidsController < ApplicationController
   def index
     @bids = Bid.all
   end
+  
+  def place_bid
+    
+    product_id = params[:bid][:product_id]
+    user_id = params[:bid][:user_id]
+    bid_amount = params[:bid][:bid_amount]
+      
+    bid_placed = Bid.place_bid?(product_id, user_id, bid_amount)
+    
+    if bid_placed
+      respond_to do |format|
+        format.html { redirect_to bid_url, notice: 'Bid was successfully placed.' }
+        format.json { render :show, status: :created }
+      end
+    end
+  end
+    
+  def revoke_bid
+    
+    product_id = params[:bid][:product_id]
+    user_id = params[:bid][:user_id]
+      
+    bid_revoked = Bid.revoke_bid?(product_id, user_id)
+    
+    if bid_revoked
+      respond_to do |format|
+        format.html { redirect_to bid_url, notice: 'Bid was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    end
+    
+  end
+    
+  def get_all_bids
+    
+    product_id = params[:bid][:product_id]
+    @bidslist = Bid.get_all_the_bids(product_id)
+    
+    respond_to do |format|
+      format.html { redirect_to @bidslist, notice: 'Products under bid was successfully created.' }
+      format.json { render json: @bidslist }
+    end
+    
+  end
+    
+  def get_bids_by_user
+    
+    user_id = params[:bid][:user_id]
+    @bidslist = Bid.get_bids_for_user(user_id)
+    
+    respond_to do |format|
+      format.html { redirect_to @bidslist, notice: 'Products under bid was successfully created.' }
+      format.json { render json: @bidslist }
+    end
+    
+  end
 
-  # GET /bids/1
-  # GET /bids/1.json
   def show
+    @bid = Bid.find(params[:bid_id])
   end
-
-  # GET /bids/new
-  def new
-    @bid = Bid.new
-  end
-
-  # GET /bids/1/edit
-  def edit
-  end
-
-  # POST /bids
-  # POST /bids.json
-  def create
-    @bid = Bid.new(bid_params)
-
-    respond_to do |format|
-      if @bid.save
-        format.html { redirect_to @bid, notice: 'Bid was successfully created.' }
-        format.json { render :show, status: :created, location: @bid }
-      else
-        format.html { render :new }
-        format.json { render json: @bid.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /bids/1
-  # PATCH/PUT /bids/1.json
-  def update
-    respond_to do |format|
-      if @bid.update(bid_params)
-        format.html { redirect_to @bid, notice: 'Bid was successfully updated.' }
-        format.json { render :show, status: :ok, location: @bid }
-      else
-        format.html { render :edit }
-        format.json { render json: @bid.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /bids/1
-  # DELETE /bids/1.json
-  def destroy
-    @bid.destroy
-    respond_to do |format|
-      format.html { redirect_to bids_url, notice: 'Bid was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
-
+    
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_bid
-      @bid = Bid.find(params[:bid_id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
+    
     def bid_params
       params.require(:bid).permit(:product_id, :user_id, :bid_amount, :bidding_date, :bidding_time)
+    end
+    def set_bid
+      @bid = Bid.find(params[:bid_id])
     end
 end

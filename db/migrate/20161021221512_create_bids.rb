@@ -7,7 +7,7 @@ class CreateBids < ActiveRecord::Migration[5.0]
       t.float :bid_amount
       t.date :bidding_date
       t.time :bidding_time
-
+      t.boolean :bid_active
       t.timestamps
     end
   end

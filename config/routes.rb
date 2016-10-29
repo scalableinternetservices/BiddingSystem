@@ -20,7 +20,8 @@ Rails.application.routes.draw do
   resources :buyers do
     collection do
       get 'search'
-      post 'search_product'
+      post 'search_products'
+      get 'ongoing_auctions'
     end
   end
   
@@ -36,6 +37,9 @@ Rails.application.routes.draw do
     end
   end
   
+  get 'bids/:bid_id', to: 'bids#show'
+  
+  post '/bids/:bid_id', to: 'bids#show'
   
   get 'users/searchproductsunderbid', to: 'users#search_products_under_bid', as: :search_products
   

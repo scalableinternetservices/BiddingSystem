@@ -7,20 +7,6 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-# Helper data structure to populate records
-locations = ["Alabama", "Alaska", "Arizona", "Arkansas", 
-            "California", "Colorado", "Connecticut", "Delaware",
-            "District of Columbia", "Florida", "Georgia", "Hawaii",
-            "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky",
-            "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan",
-            "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska",
-            "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York",
-            "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon",
-            "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota",
-            "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington",
-            "West Virginia", "Wisconsin", "Wyoming"]
-
-
 # Populate Category table
 Category.create(name: "Electronics", description: "Generic electronics items not belonging to specific category")
 Category.create(name: "Camera", description: "Camera and photo accessories")
@@ -35,20 +21,19 @@ Category.create(name: "Household", description: "Generic household items not bel
 
 
 # Populate Product table
-Product.create(user_id: 2, category_id: 4, name: "Mercedes F100", date_added: Date.today, location: locations[10])
-Product.create(user_id: 5, category_id: 2, name: "Nikon D5300", date_added: Date.today, location: locations[2])
-Product.create(user_id: 8, category_id: 8, name: "Jasmine S35 Acoustic Guitar", date_added: Date.today, location: locations[3])
-Product.create(user_id: 1, category_id: 2, name: "Canon EOS Rebel T5i", date_added: Date.today, location: locations[7])
-Product.create(user_id: 2, category_id: 4, name: "Nissan NV200", date_added: Date.today, location: locations[22])
-Product.create(user_id: 2, category_id: 2, name: "Nikon D5", date_added: Date.today, location: locations[2])
-Product.create(user_id: 2, category_id: 7, name: "Kutchina Fieona SS", date_added: Date.today, location: locations[4])
-Product.create(user_id: 1, category_id: 2, name: "Nikon D750", date_added: Date.today, location: locations[15])
-Product.create(user_id: 3, category_id: 5, name: "iPhone 6S", date_added: Date.today, location: locations[19])
-Product.create(user_id: 6, category_id: 9, name: "Macbook Pro 2016", date_added: Date.today, location: locations[16])
+Product.create(user_id: 2, category_id: 4, name: "Mercedes F100", date_added: Date.today, location_id: 10)
+Product.create(user_id: 5, category_id: 2, name: "Nikon D5300", date_added: Date.today, location_id: 2)
+Product.create(user_id: 8, category_id: 8, name: "Jasmine S35 Acoustic Guitar", date_added: Date.today, location_id: 3)
+Product.create(user_id: 1, category_id: 2, name: "Canon EOS Rebel T5i", date_added: Date.today, location_id: 7)
+Product.create(user_id: 2, category_id: 4, name: "Nissan NV200", date_added: Date.today, location_id: 22)
+Product.create(user_id: 2, category_id: 2, name: "Nikon D5", date_added: Date.today, location_id: 2)
+Product.create(user_id: 2, category_id: 7, name: "Kutchina Fieona SS", date_added: Date.today, location_id: 2)
+Product.create(user_id: 1, category_id: 2, name: "Nikon D750", date_added: Date.today, location_id: 15)
+Product.create(user_id: 3, category_id: 5, name: "iPhone 6S", date_added: Date.today, location_id: 19)
+Product.create(user_id: 6, category_id: 9, name: "Macbook Pro 2016", date_added: Date.today, location_id: 16)
 
 
-#populate ProductsUnderBid table
-
+# Populate ProductsUnderBid table
 ProductsUnderBid.create(product_id: 2, minimum_bidding_price: 34, maximum_bidding_price: 11,
                                                 bid_status: true, sell_status: false, bid_start_date: Date.current, 
                                                 bid_start_time: Time.zone.now.to_formatted_s(:time), bid_end_date: Date.tomorrow, bid_end_time: Time.zone.now.to_formatted_s(:time))
