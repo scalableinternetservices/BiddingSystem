@@ -1,0 +1,25 @@
+<div class="col-md-5">
+    <div class="panel panel-primary">
+        <div class="panel-heading">Stop Bidding</div>
+        <div class="panel-body">            
+            <%= form_for :products_under_bid, url: { action: "stop_bid" } do |f| %>
+    
+                <div class="field">
+                    <%= f.label :product_bid_id %>
+                        <%= f.text_field :product_bid_id, :value => @product_bid_id, :readonly => true %>
+                </div>
+                
+                <% @product_bid_item = @products_under_bid.find_by_product_bid_id(@product_bid_id) %>
+                
+                <div class="field">
+                    <%= f.label :minimum_bidding_price %>
+                        <%= f.text_field :minimum_bidding_price, :value => @product_bid_item.minimum_bidding_price, :readonly => true %>
+                </div>
+
+                <div class="actions">
+                    <%= f.submit "Stop Bid", class: "btn btn-success" %>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>
