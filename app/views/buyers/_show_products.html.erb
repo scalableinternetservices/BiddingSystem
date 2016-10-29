@@ -7,14 +7,16 @@
           <tr>
             <th>Category</th>
             <th>Name</th>
-            <th>Date added</th>
             <th>Location</th>
+            <th>Your bid/Highest bid</th>
+            <th colspan="3"></th>
+            <th colspan="3"></th>
             <th colspan="3"></th>
           </tr>
         </thead>
 
         <tbody>
-          <% products.each do |product| %>
+          <% products.each_with_index do |product, product_index| %>
             <tr>
               <td>
                 <%= Category.find(product.category_id).name %>
@@ -23,13 +25,19 @@
                 <%= product.name %>
               </td>
               <td>
-                <%= product.date_added %>
-              </td>
-              <td>
                 <%= @locations[product.location_id] %>
               </td>
               <td>
+                <%= @already_placed_bid[product_index] %>/<%= product.maximum_bidding_price %>
+              </td>
+              <td>
                 <%= link_to 'Show', product %>
+              </td>
+              <td>
+                <%= link_to 'Place Bid', place_new_bid_buyers_path(:product_id => product.product_id, :highest_bid => product.maximum_bidding_price) %>
+              </td>
+              <td>
+                <%= link_to 'Revoke Bid', product %>
               </td>
             </tr>
             <% end %>

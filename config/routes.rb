@@ -19,6 +19,10 @@ Rails.application.routes.draw do
       get 'search'
       post 'search_products'
       get 'ongoing_auctions'
+      get 'place_new_bid'
+      get 'revoke_old_bid'
+      post 'place_bid'
+      post 'revoke_bid'
     end
   end
   

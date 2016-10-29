@@ -42,3 +42,6 @@ ProductsUnderBid.create(product_id: 4, minimum_bidding_price: 54, maximum_biddin
                                                 bid_status: true, sell_status: false, bid_start_date: Date.current, 
                                                 bid_start_time: Time.zone.now.to_formatted_s(:time), bid_end_date: Date.tomorrow, bid_end_time: Time.zone.now.to_formatted_s(:time))
 
+# Populate Bid table
+Bid.create(product_id: 2, user_id: 1337, bid_amount: 15.5, bidding_date: Date.today,
+            bidding_time: Time.zone.now.to_formatted_s(:time), bid_active: true)
