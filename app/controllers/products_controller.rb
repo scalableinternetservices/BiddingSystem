@@ -5,6 +5,7 @@ class ProductsController < ApplicationController
   # GET /products.json
   def index
     @products = Product.paginate(page: params[:page], per_page: 10)
+    @products_under_bid = ProductsUnderBid.all
   end
 
   # GET /products/1

@@ -27,6 +27,8 @@ class ProductsUnderBid < ApplicationRecord
     end
     
     def self.stop_bid?(product_bid_id)
+        puts "---------------------------------products_under_bids.rb------------------------------------------"
+        puts product_bid_id
         product_under_bid = ProductsUnderBid.find(product_bid_id)
         product_under_bid.update_attributes(:bid_status => false , :sell_status => true)
         product_under_bid.save
