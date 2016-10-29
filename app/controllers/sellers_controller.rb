@@ -50,8 +50,6 @@ class SellersController < UsersController
     def stop_bid
         product_bid_id = params[:products_under_bid][:product_bid_id]
         params[:products_under_bid][:product_bid_id]
-        puts "--------------------------------seller's controller-------------------------------------"
-        puts product_bid_id
         has_bid_stopped = ProductsUnderBid.stop_bid?(product_bid_id)
         has_bid_stopped
     
