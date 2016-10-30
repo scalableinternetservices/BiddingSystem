@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   
-  before_filter :random_latest_products
+  before_action :random_latest_products
   protect_from_forgery with: :exception
   
   def initialize

@@ -3,10 +3,10 @@ class UsersController < ApplicationController
     def search_products_under_bid
 
         product_name = params[:name]
-        category = params[:category]
-        highest_bid = params[:highest_bid]
+        category_id = params[:category_id].to_i
+        highest_bid = params[:highest_bid].to_f
         
-        product = ProductsUnderBid.search_products_under_bid(name: product_name, category: category, highest_bid: highest_bid)
+        product = ProductsUnderBid.search_products_under_bid(name: product_name, category_id: category_id, highest_bid: highest_bid)
 
         respond_to do |format|
             format.html { redirect_to product, notice: 'Products under bid was successfully created.' }

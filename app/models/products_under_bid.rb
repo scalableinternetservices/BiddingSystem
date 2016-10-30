@@ -33,14 +33,14 @@ class ProductsUnderBid < ApplicationRecord
     end
 
     def self.get_products_under_bid
-        products_under_bid = Product.select("*").joins(:products_under_bid).where("products_under_bids.bid_status" => true)
+        Product.select("*").joins(:products_under_bid).where("products_under_bids.bid_status" => true)
     end
     
     def self.search_products_under_bid(name: "", category_id: 0, location_id: 0, highest_bid: 0)
         result = Product.select("*").joins(:products_under_bid)
-        
+       
         if(name != "")
-            result = result.where('products.name' => name)
+            result = result.where("products.name" => name)
         end
         
         if(category_id != 0)

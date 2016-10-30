@@ -9,7 +9,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
   
   test "should search products under bid" do
-    get search_products_url, params: { name: "Canon EOS Rebel T5i", category: 2, highest_bid: 9, format: "json" }
+    get search_products_url, params: { name: "Canon EOS Rebel T5i", category: 0, location_id: 8, highest_bid: 9, format: "json" }
     assert_response :success
   end
 end

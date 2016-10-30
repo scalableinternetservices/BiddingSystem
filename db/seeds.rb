@@ -34,14 +34,19 @@ Product.create(user_id: 6, category_id: 9, name: "Macbook Pro 2016", date_added:
 
 
 # Populate ProductsUnderBid table
-ProductsUnderBid.create(product_id: 2, minimum_bidding_price: 34, maximum_bidding_price: 11,
-                                                bid_status: true, sell_status: false, bid_start_date: Date.current, 
-                                                bid_start_time: Time.zone.now.to_formatted_s(:time), bid_end_date: Date.tomorrow, bid_end_time: Time.zone.now.to_formatted_s(:time))
+ProductsUnderBid.create(product_id: 2, minimum_bidding_price: 34, maximum_bidding_price: 15.5,
+                        bid_status: true, sell_status: false, bid_start_date: Date.current, 
+                        bid_start_time: Time.zone.now.to_formatted_s(:time), bid_end_date: Date.tomorrow, bid_end_time: Time.zone.now.to_formatted_s(:time))
+ProductsUnderBid.create(product_id: 4, minimum_bidding_price: 54, maximum_bidding_price: 0,
+                        bid_status: true, sell_status: false, bid_start_date: Date.current, 
+                        bid_start_time: Time.zone.now.to_formatted_s(:time), bid_end_date: Date.tomorrow, bid_end_time: Time.zone.now.to_formatted_s(:time))
+ProductsUnderBid.create(product_id: 10, minimum_bidding_price: 60, maximum_bidding_price: 0,
+                        bid_status: true, sell_status: false, bid_start_date: Date.current, 
+                        bid_start_time: Time.zone.now.to_formatted_s(:time), bid_end_date: Date.tomorrow, bid_end_time: Time.zone.now.to_formatted_s(:time))
 
-ProductsUnderBid.create(product_id: 4, minimum_bidding_price: 54, maximum_bidding_price: 10,
-                                                bid_status: true, sell_status: false, bid_start_date: Date.current, 
-                                                bid_start_time: Time.zone.now.to_formatted_s(:time), bid_end_date: Date.tomorrow, bid_end_time: Time.zone.now.to_formatted_s(:time))
 
 # Populate Bid table
 Bid.create(product_id: 2, user_id: 1337, bid_amount: 15.5, bidding_date: Date.today,
+            bidding_time: Time.zone.now.to_formatted_s(:time), bid_active: true)
+Bid.create(product_id: 2, user_id: 1338, bid_amount: 10, bidding_date: Date.today,
             bidding_time: Time.zone.now.to_formatted_s(:time), bid_active: true)

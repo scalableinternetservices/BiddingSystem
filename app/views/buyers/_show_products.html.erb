@@ -37,7 +37,7 @@
                 <%= link_to 'Place Bid', place_new_bid_buyers_path(:product_id => product.product_id, :highest_bid => product.maximum_bidding_price) %>
               </td>
               <td>
-                <%= link_to 'Revoke Bid', product %>
+                <%= link_to 'Revoke Bid', revoke_bid_buyers_path(:product_id => product.product_id) %>
               </td>
             </tr>
             <% end %>
