@@ -17,11 +17,9 @@ class ProductsUnderBid < ApplicationRecord
             bid_start_date = Date.today.to_formatted_s(:date)
             bid_start_time = Time.zone.now.to_formatted_s(:time)
         end
-        
-        bid_status = true
-        sell_status = false
-        product_under_bid = ProductsUnderBid.new(product_id: product_id, minimum_bidding_price: minimum_bidding_price, 
-                                                bid_status: bid_status, sell_status: sell_status, bid_start_date: bid_start_date, 
+
+        product_under_bid = ProductsUnderBid.new(product_id: product_id, minimum_bidding_price: minimum_bidding_price, maximum_bidding_price: 0, 
+                                                bid_status: true, sell_status: false, bid_start_date: bid_start_date, 
                                                 bid_start_time: bid_start_time, bid_end_date: bid_end_date, bid_end_time: bid_end_time)
         product_under_bid.save
     end
