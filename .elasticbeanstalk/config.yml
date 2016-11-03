@@ -1,14 +1,18 @@
 branch-defaults:
   deploy:
     environment: biddingsystem-demo
+  master:
+    environment: biddingsystem-load-testing
 environment-defaults:
   biddingsystem-demo:
     branch: null
     repository: null
 global:
   application_name: BiddingSystem
+  branch: null
   default_ec2_keyname: biddingsystem
   default_platform: 64bit Amazon Linux 2016.03 v2.1.6 running Ruby 2.3 (Puma)
   default_region: us-west-2
   profile: eb-cli
+  repository: null
   sc: git

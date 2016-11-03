@@ -32,7 +32,12 @@
                     <%= f.label :location_id %>
                     <%= f.select :location_id, @locations.each_with_index.map { |l, l_id| [l, l_id] } %>
                 </div>
-
+                
+                <div class="field">
+                    <%= f.label :image %>
+                        <%= f.file_field :image %>
+                </div>
+                
                 <div class="actions">
                     <%= f.submit action, class: "btn btn-success" %>
                 </div>

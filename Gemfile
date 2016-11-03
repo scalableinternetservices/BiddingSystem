@@ -13,6 +13,8 @@ gem "will_paginate", "~> 3.0.4"
 gem "will_paginate-bootstrap", "~> 1.0.0" 
 gem 'foreigner'
 gem "devise"
+gem "paperclip", "~> 4.2"
+gem 'aws-sdk', '~> 1.6'
 
 group :development, :test do
   gem 'sqlite3', '1.3.11'

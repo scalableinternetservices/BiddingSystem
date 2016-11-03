@@ -7,6 +7,9 @@ class CreateProducts < ActiveRecord::Migration[5.0]
       t.string :name
       t.date :date_added
       t.integer :location_id
+      t.string :image_file_name
+      t.string :image_content_type
+      t.integer :image_file_size
       t.belongs_to :category, index: true
       t.timestamps
     end
