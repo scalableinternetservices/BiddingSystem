@@ -1,4 +1,5 @@
 class BuyersController < UsersController
+    before_action :authenticate_user!, only: [ :place_new_bid, :place_bid, :revoke_bid ]
     
     def search
     end
@@ -46,9 +47,13 @@ class BuyersController < UsersController
     def get_already_placed_bids(products)
         @already_placed_bid = []
         products.each do |product|
-            placed_bid = Bid.where('product_id' => product.product_id, "user_id" => current_user.id, "bid_active" => true)
-            if !placed_bid.blank?
-                @already_placed_bid << placed_bid.first.bid_amount
+            if !current_user.nil?
+                placed_bid = Bid.where('product_id' => product.product_id, "user_id" => current_user.id, "bid_active" => true)
+                if !placed_bid.blank?
+                    @already_placed_bid << placed_bid.first.bid_amount
+                else
+                    @already_placed_bid << 0
+                end
             else
                 @already_placed_bid << 0
             end
