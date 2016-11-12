@@ -38,8 +38,7 @@ class SellersController < UsersController
         
         #puts product_id, minimum_bidding_price, bid_start_date, bid_start_time, bid_end_date, bid_end_time
 
-        has_bid_started = ProductsUnderBid.start_bid?(product_id, minimum_bidding_price, bid_start_date, bid_start_time, bid_end_date, bid_end_time)
-        has_bid_started
+        ProductsUnderBid.start_bid?(product_id, minimum_bidding_price, bid_start_date, bid_start_time, bid_end_date, bid_end_time)
         
         @products = Product.paginate(page: params[:page], per_page: 10)
         @products_under_bid = ProductsUnderBid.all
@@ -50,8 +49,7 @@ class SellersController < UsersController
     def stop_bid
         product_bid_id = params[:products_under_bid][:product_bid_id]
         params[:products_under_bid][:product_bid_id]
-        has_bid_stopped = ProductsUnderBid.stop_bid?(product_bid_id)
-        has_bid_stopped
+        ProductsUnderBid.stop_bid?(product_bid_id)
     
         @products = Product.paginate(page: params[:page], per_page: 10)
         @products_under_bid = ProductsUnderBid.all

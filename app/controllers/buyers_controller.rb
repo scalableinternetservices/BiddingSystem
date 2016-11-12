@@ -18,6 +18,9 @@ class BuyersController < UsersController
         get_already_placed_bids(@products_under_bid)
     end
     
+    def my_bids
+    end
+    
     def place_new_bid
         @product_id = params[:product_id]
         @highest_bid = params[:highest_bid]
@@ -26,16 +29,14 @@ class BuyersController < UsersController
     def place_bid
         product_id = params[:bid][:product_id].to_i
         bid_amount = params[:bid][:bid_amount].to_f
-        user_id = 1337
-        Bid.place_bid(product_id, user_id, bid_amount)
+        Bid.place_bid(product_id, current_user.id, bid_amount)
         
         redirect_to :action => 'ongoing_auctions' and return
     end
     
     def revoke_bid
         product_id = params[:product_id].to_i
-        user_id = 1337
-        Bid.revoke_bid(product_id, user_id)
+        Bid.revoke_bid(product_id, current_user.id)
         
         redirect_to :action => 'ongoing_auctions' and return
     end
@@ -44,9 +45,8 @@ class BuyersController < UsersController
     
     def get_already_placed_bids(products)
         @already_placed_bid = []
-        user_id = 1337
         products.each do |product|
-            placed_bid = Bid.where('product_id' => product.product_id, "user_id" => user_id, "bid_active" => true)
+            placed_bid = Bid.where('product_id' => product.product_id, "user_id" => current_user.id, "bid_active" => true)
             if !placed_bid.blank?
                 @already_placed_bid << placed_bid.first.bid_amount
             else

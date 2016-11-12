@@ -2,16 +2,11 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
-  # GET /products
-  # GET /products.json
-  def index
-    @products = Product.paginate(page: params[:page], per_page: 10)
+  def my_products
+    @products = Product.where(:user_id => current_user.id).paginate(page: params[:page], per_page: 10)
     @products_under_bid = ProductsUnderBid.all
-    @currentUser = current_user.id
   end
 
-  # GET /products/1
-  # GET /products/1.json
   def show
   end
   
@@ -19,17 +14,13 @@ class ProductsController < ApplicationController
     redirect_to products_url
   end
 
-  # GET /products/new
   def new
     @product = Product.new
   end
 
-  # GET /products/1/edit
   def edit
   end
 
-  # POST /products
-  # POST /products.json
   def create
     @product = Product.new(product_params)
     @product.date_added = Date.today
@@ -45,8 +36,6 @@ class ProductsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /products/1
-  # PATCH/PUT /products/1.json
   def update
     respond_to do |format|
       if @product.update(product_params)
@@ -59,8 +48,6 @@ class ProductsController < ApplicationController
     end
   end
 
-  # DELETE /products/1
-  # DELETE /products/1.json
   def destroy
     @product.destroy
     respond_to do |format|
@@ -77,7 +64,7 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params[:product][:user_id] = "1337"
+      params[:product][:user_id] = current_user.id
       params.require(:product).permit(:user_id, :category_id, :name, :date_added, :location_id, :image)
     end
 

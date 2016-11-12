@@ -5,7 +5,6 @@
       <table class="table">
         <thead>
           <tr>
-            <th>User</th>
             <th>Category</th>
             <th>Name</th>
             <th>Image</th>
@@ -18,9 +17,6 @@
         <tbody>
           <% @products.each do |product| %>
             <tr>
-              <td>
-                <%= product.user_id %>
-              </td>
               <td>
                 <%= Category.find(product.category_id).name %>
               </td>
