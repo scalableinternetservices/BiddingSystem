@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       get 'search'
       post 'search_products'
       get 'ongoing_auctions'
+      get 'my_bids'
       get 'place_new_bid'
       post 'place_bid'
       get 'revoke_bid'

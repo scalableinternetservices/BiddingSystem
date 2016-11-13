@@ -1,5 +1,5 @@
 class BuyersController < UsersController
-    before_action :authenticate_user!, only: [ :place_new_bid, :place_bid, :revoke_bid ]
+    before_action :authenticate_user!, only: [ :my_bids, :place_new_bid, :place_bid, :revoke_bid ]
     
     def search
     end
@@ -20,6 +20,9 @@ class BuyersController < UsersController
     end
     
     def my_bids
+        @my_bids = Product.select("*").joins("INNER JOIN bids ON bids.product_id = products.product_id
+                                    INNER JOIN products_under_bids ON products_under_bids.product_id = products.product_id")
+                                    .where('bids.user_id' => current_user.id, 'bids.bid_active' => true)
     end
     
     def place_new_bid
@@ -31,14 +34,12 @@ class BuyersController < UsersController
         product_id = params[:bid][:product_id].to_i
         bid_amount = params[:bid][:bid_amount].to_f
         Bid.place_bid(product_id, current_user.id, bid_amount)
-        
         redirect_to :action => 'ongoing_auctions' and return
     end
     
     def revoke_bid
         product_id = params[:product_id].to_i
         Bid.revoke_bid(product_id, current_user.id)
-        
         redirect_to :action => 'ongoing_auctions' and return
     end
     

@@ -6,7 +6,7 @@
         <thead>
           <tr>
             <th>Category</th>
-            <th>Name</th>
+            <th>Product</th>
             <th>Location</th>
             <th>Your bid/Highest bid</th>
             <th colspan="3"></th>
@@ -28,7 +28,7 @@
                 <%= @locations[product.location_id] %>
               </td>
               <td>
-                <%= @already_placed_bid[product_index] %>/<%= product.maximum_bidding_price %>
+                <%= @already_placed_bid.present? ? @already_placed_bid[product_index] : product.bid_amount %>/<%= product.maximum_bidding_price %>
               </td>
               <td>
                 <%= link_to 'Show', product %>
