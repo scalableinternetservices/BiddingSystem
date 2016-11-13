@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   root 'application#index'
   
   devise_for :users
-  #resources :categories, param: :category_id
-  resources :products do
+  
+  resources :products, param: :product_id do
     collection do
       get 'my_products'
     end
@@ -46,7 +46,6 @@ Rails.application.routes.draw do
   get 'buyers/productsunderbid', to: 'buyers#get_products_under_bid'
   
   resources :bids, param: :bid_id
-  resources :products, param: :product_id
   resources :products_under_bids, param: :product_bid_id
   
 end
