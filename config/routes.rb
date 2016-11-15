@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resources :sellers do
     collection do
       get 'bid'
+      get 'sold'
       post 'start_bid'
       get 'stop_bid'
     end
