@@ -40,7 +40,7 @@
           </div>
           
           
-          <%= form_for( @product, :url => back_product_path( @product ), :html => { :method => :post } ) do |f| %>
+          <%= form_for( @product, :url => my_products_products_path( @product ), :html => { :method => :get } ) do |f| %>
               <div class="actions">
                   <p> <%= f.submit 'Back', class: "btn btn-success" %> </p>
               </div>

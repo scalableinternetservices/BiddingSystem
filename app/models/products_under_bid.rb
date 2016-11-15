@@ -12,12 +12,22 @@ class ProductsUnderBid < ApplicationRecord
     self.primary_key = 'product_bid_id'
 
     def self.start_bid?(product_id, minimum_bidding_price, bid_start_date, bid_start_time, bid_end_date, bid_end_time)
+        # Don't allow starting bid on sold products
+        product_under_bid = ProductsUnderBid.where(:product_id => product_id).first
+        if !product_under_bid.nil?
+            sell_status = product_under_bid.sell_status
+            if sell_status == true
+                return
+            end
+        end
         
+        # Default bid start date and time is current date and time
         if bid_start_date == nil && bid_start_time == nil
             bid_start_date = Date.today.to_formatted_s(:date)
             bid_start_time = Time.zone.now.to_formatted_s(:time)
         end
 
+        # Start the bid
         product_under_bid = ProductsUnderBid.new(product_id: product_id, minimum_bidding_price: minimum_bidding_price, maximum_bidding_price: 0, 
                                                 bid_status: true, sell_status: false, bid_start_date: bid_start_date, 
                                                 bid_start_time: bid_start_time, bid_end_date: bid_end_date, bid_end_time: bid_end_time)
