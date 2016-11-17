@@ -71,8 +71,7 @@ class Bid < ApplicationRecord
   
   def self.get_all_the_bids (product_id)
     
-    list = Bid.where("product_id " => product_id)
-    
+    list = Bid.where("product_id" => product_id)
     if !list.blank?
       return list
     end

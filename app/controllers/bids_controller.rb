@@ -40,14 +40,14 @@ class BidsController < ApplicationController
     
   end
     
-  def get_all_bids
+  def get_all_the_bids
     
     product_id = params[:bid][:product_id]
-    @bidslist = Bid.get_all_the_bids(product_id)
+    @bids = Bid.get_all_the_bids(product_id)
     
     respond_to do |format|
-      format.html { redirect_to @bidslist, notice: 'Products under bid was successfully created.' }
-      format.json { render json: @bidslist }
+      format.html { redirect_to @bids, notice: 'Products under bid was successfully created.' }
+      format.json { render json: @bids }
     end
     
   end

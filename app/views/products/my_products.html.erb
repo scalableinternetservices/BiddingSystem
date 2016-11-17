@@ -48,8 +48,13 @@
                 <%= link_to 'Stop Bid', stop_bid_sellers_path(:product_bid_id => product.product_bid_id) %>
                 <% end %>
               </td>
+              <td>
+                <% if @product_bid_item= @products_under_bid.find_by_product_id_and_bid_status(product.product_id,true) %>
+                <%= link_to 'Bids', bids_products_path(:product_id => product.product_id) %>
+                <% end %>
+              </td>
             </tr>
-            <% end %>
+          <% end %>
         </tbody>
       </table>
       <div id="paginate">
