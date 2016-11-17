@@ -36,6 +36,11 @@
             </ul>
         </li>
         <li><a href="#">Who are we?</a></li>
+        <% if current_user %>
+        <%= raw "<li style=\"float:right;\"><a href=\"#\">".html_safe %>
+        <%= current_user.email %>
+        <%= raw "</a></li>".html_safe %>
+        <% end %>
     </ul>
 </nav>
 
