@@ -1,0 +1,31 @@
+<div class="col-md-9">
+  <div class="panel panel-primary">
+    <div class="panel-heading">Bids</div>
+    <div class="panel-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>User</th>
+            <th>Bid Amount</th>
+          </tr>
+        </thead>
+
+        <!--<% @bids=Bid.get_all_the_bids(:product_id)%>-->
+        <% @bids=Bid.get_all_the_bids(4) %>
+        <tbody>
+          <% @bids.each do |bid| %>
+            <tr>
+              <td>
+                <%= bid.user_id %>
+              </td>
+              <td>
+                <%= bid.bid_amount %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>

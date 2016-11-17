@@ -35,6 +35,19 @@ class SellersController < UsersController
         redirect_to :controller => 'products', :action => 'my_products' and return
     end
     
+    def show_bids
+        product_id = params[:product_id]
+        list=Bid.get_all_the_bids(product_id)
+        if list!=0
+            list.each do |bid|
+                puts bid
+            end
+        else
+            puts "No bids yet"
+        end
+        redirect_to :controller => 'products', :action => 'my_products' and return
+    end
+    
     private
     # Use callbacks to share common setup or constraints between actions.
     def set_products_under_bid
