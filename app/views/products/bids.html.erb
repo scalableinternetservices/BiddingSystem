@@ -10,8 +10,7 @@
           </tr>
         </thead>
 
-        <!--<% @bids=Bid.get_all_the_bids(:product_id)%>-->
-        <% @bids=Bid.get_all_the_bids(4) %>
+        <% @bids=Bid.get_all_the_bids(params[:product_id]) %>
         <tbody>
           <% @bids.each do |bid| %>
             <tr>
