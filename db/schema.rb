@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20161022221427) do
 
   create_table "products_under_bids", primary_key: "product_bid_id", force: :cascade do |t|
     t.integer  "product_id"
+    t.integer  "winner_id"
     t.float    "minimum_bidding_price"
     t.float    "maximum_bidding_price"
     t.boolean  "bid_status"

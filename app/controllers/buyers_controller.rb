@@ -1,7 +1,11 @@
 class BuyersController < UsersController
-    before_action :authenticate_user!, only: [ :my_bids, :place_new_bid, :place_bid, :revoke_bid ]
+    before_action :authenticate_user!, only: [ :bought, :my_bids, :place_new_bid, :place_bid, :revoke_bid ]
     
     def search
+    end
+    
+    def bought
+        @products = Product.where(:user_id => current_user.id).joins('INNER JOIN products_under_bids ON products.product_id = products_under_bids.product_id').where('products_under_bids.sell_status' => true)
     end
     
     def search_products

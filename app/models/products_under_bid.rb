@@ -35,9 +35,10 @@ class ProductsUnderBid < ApplicationRecord
     end
     
     def self.stop_bid?(product_bid_id)
-        product_under_bid = ProductsUnderBid.find(product_bid_id)
-        product_under_bid.update_attributes(:bid_status => false , :sell_status => true)
-        product_under_bid.save
+        product_under_bid_record = ProductsUnderBid.find(product_bid_id)
+        product_under_bid_record.update_attributes(:bid_status => false , :sell_status => true)
+        product_under_bid_record.save!
+        decide_winner(product_under_bid_record)
     end
 
     def self.get_products_under_bid
@@ -65,4 +66,17 @@ class ProductsUnderBid < ApplicationRecord
         
         result
     end
+    
+    def self.decide_winner(product_under_bid_record)
+        # Get a list of active bids on this product
+        highest_active_bid_record = Bid.where("product_id" => product_under_bid_record.product_id, "bid_active" => true)
+                                        .order(bid_amount: :desc)
+                                        .limit(1)
+        if !highest_active_bid_record.blank?
+            highest_active_bid = highest_active_bid_record.first
+            winner_id = highest_active_bid.user_id
+            product_under_bid_record.update_attribute(:winner_id, winner_id)
+        end
+    end
+    
 end

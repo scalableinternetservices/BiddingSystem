@@ -55,8 +55,7 @@ class Bid < ApplicationRecord
         if !highest_active_bid_record.blank?
           highest_active_bid = highest_active_bid_record.first
           highest_active_bid_amount = highest_active_bid.bid_amount
-          
-          puts "Values", bid_amount, highest_active_bid_amount
+
           if bid_amount > highest_active_bid_amount
               product.update_attribute(:maximum_bidding_price, highest_active_bid_amount)
           end

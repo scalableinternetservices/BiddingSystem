@@ -1,12 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
-
 # Populate Category table
 Category.create(name: "Electronics", description: "Generic electronics items not belonging to specific category")
 Category.create(name: "Camera", description: "Camera and photo accessories")
@@ -34,22 +25,25 @@ Product.create(user_id: 3, category_id: 9, name: "Macbook Pro 2016", date_added:
 
 
 # Populate ProductsUnderBid table
-ProductsUnderBid.create(product_id: 2, minimum_bidding_price: 34, maximum_bidding_price: 15.5,
+ProductsUnderBid.create(product_id: 2, winner_id: 0, minimum_bidding_price: 5, maximum_bidding_price: 30,
                         bid_status: true, sell_status: false, bid_start_date: Date.current, 
                         bid_start_time: Time.zone.now.to_formatted_s(:time), bid_end_date: Date.tomorrow, bid_end_time: Time.zone.now.to_formatted_s(:time))
-ProductsUnderBid.create(product_id: 4, minimum_bidding_price: 54, maximum_bidding_price: 0,
+ProductsUnderBid.create(product_id: 4, winner_id: 0, minimum_bidding_price: 54, maximum_bidding_price: 0,
                         bid_status: true, sell_status: false, bid_start_date: Date.current, 
                         bid_start_time: Time.zone.now.to_formatted_s(:time), bid_end_date: Date.tomorrow, bid_end_time: Time.zone.now.to_formatted_s(:time))
-ProductsUnderBid.create(product_id: 10, minimum_bidding_price: 60, maximum_bidding_price: 0,
+ProductsUnderBid.create(product_id: 10, winner_id: 0, minimum_bidding_price: 60, maximum_bidding_price: 0,
                         bid_status: true, sell_status: false, bid_start_date: Date.current, 
                         bid_start_time: Time.zone.now.to_formatted_s(:time), bid_end_date: Date.tomorrow, bid_end_time: Time.zone.now.to_formatted_s(:time))
 
 
 # Populate Bid table
-Bid.create(product_id: 2, user_id: 1, bid_amount: 15.5, bidding_date: Date.today,
+Bid.create(product_id: 2, user_id: 1, bid_amount: 20, bidding_date: Date.today,
             bidding_time: Time.zone.now.to_formatted_s(:time), bid_active: true)
 Bid.create(product_id: 2, user_id: 2, bid_amount: 10, bidding_date: Date.today,
             bidding_time: Time.zone.now.to_formatted_s(:time), bid_active: true)
+Bid.create(product_id: 2, user_id: 3, bid_amount: 30, bidding_date: Date.today,
+            bidding_time: Time.zone.now.to_formatted_s(:time), bid_active: true)
+
 
 # Populate User table
 User.create! :email => 'user1@bid.com', :password => 'password', :password_confirmation => 'password'

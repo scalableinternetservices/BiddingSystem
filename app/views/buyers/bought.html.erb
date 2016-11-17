@@ -1,0 +1,40 @@
+<div class="col-md-9">
+  <div class="panel panel-primary">
+    <div class="panel-heading">Products</div>
+    <div class="panel-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Date added</th>
+            <th>Location</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @products.each do |product| %>
+            <tr>
+              <td>
+                <%= Category.find(product.category_id).name %>
+              </td>
+              <td>
+                <%= product.name %>
+              </td>
+              <td>
+                <%= link_to image_tag product.image.url(:thumb), :class => "product" %>
+              </td>
+              <td>
+                <%= product.date_added %>
+              </td>
+              <td>
+                <%= @locations[product.location_id] %>
+              </td>
+            </tr>
+            <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
