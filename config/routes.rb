@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :products, param: :product_id do
     collection do
       get 'my_products'
+      get 'bids'
     end
     member do
       post 'back'
