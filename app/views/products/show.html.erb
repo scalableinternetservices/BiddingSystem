@@ -7,6 +7,13 @@
               <p id="notice"><%= notice %>
           </div>
           
+         <div class="field">
+              <p>
+                <strong>Product:</strong>
+                <%= @product.name %>
+              </p>
+          </div>
+          
           <div class="field">
               <p>
                 <strong>User:</strong>
@@ -20,25 +27,20 @@
                 <%= @product.category_id %>
               </p>
           </div>
-          <div class="field">
-              <p>
-                <strong>Name:</strong>
-                <%= @product.name %>
-              </p>
-          </div>
+          
           <div class="field">
               <p>
                 <strong>Date added:</strong>
                 <%= @product.date_added %>
               </p>
           </div>
+          
           <div class="field">
               <p>
                 <strong>Location:</strong>
                 <%= @locations[@product.location_id] %>
               </p>
           </div>
-          
           
           <%= form_for( @product, :url => my_products_products_path( @product ), :html => { :method => :get } ) do |f| %>
               <div class="actions">

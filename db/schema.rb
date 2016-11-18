@@ -13,50 +13,42 @@
 ActiveRecord::Schema.define(version: 20161022221427) do
 
   create_table "bids", primary_key: "bid_id", force: :cascade do |t|
-    t.integer  "product_id"
-    t.integer  "user_id"
-    t.float    "bid_amount"
-    t.date     "bidding_date"
-    t.time     "bidding_time"
-    t.boolean  "bid_active"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer "product_id"
+    t.integer "user_id"
+    t.float   "bid_amount"
+    t.date    "bidding_date"
+    t.time    "bidding_time"
+    t.boolean "bid_active"
   end
 
   create_table "categories", primary_key: "category_id", force: :cascade do |t|
-    t.string   "name"
-    t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string "name"
+    t.text   "description"
   end
 
   create_table "products", primary_key: "product_id", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "category_id"
-    t.string   "name"
-    t.date     "date_added"
-    t.integer  "location_id"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.integer "user_id"
+    t.integer "category_id"
+    t.string  "name"
+    t.date    "date_added"
+    t.integer "location_id"
+    t.string  "image_file_name"
+    t.string  "image_content_type"
+    t.integer "image_file_size"
     t.index ["category_id"], name: "index_products_on_category_id"
   end
 
   create_table "products_under_bids", primary_key: "product_bid_id", force: :cascade do |t|
-    t.integer  "product_id"
-    t.integer  "winner_id"
-    t.float    "minimum_bidding_price"
-    t.float    "maximum_bidding_price"
-    t.boolean  "bid_status"
-    t.boolean  "sell_status"
-    t.date     "bid_start_date"
-    t.time     "bid_start_time"
-    t.date     "bid_end_date"
-    t.time     "bid_end_time"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.integer "product_id"
+    t.integer "winner_id"
+    t.float   "minimum_bidding_price"
+    t.float   "maximum_bidding_price"
+    t.boolean "bid_status"
+    t.boolean "sell_status"
+    t.date    "bid_start_date"
+    t.time    "bid_start_time"
+    t.date    "bid_end_date"
+    t.time    "bid_end_time"
     t.index ["product_id"], name: "index_products_under_bids_on_product_id"
   end
 
@@ -71,8 +63,6 @@ ActiveRecord::Schema.define(version: 20161022221427) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

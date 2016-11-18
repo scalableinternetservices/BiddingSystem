@@ -5,8 +5,8 @@
       <table class="table">
         <thead>
           <tr>
+            <th>Product</th>
             <th>Category</th>
-            <th>Name</th>
             <th>Image</th>
             <th>Date added</th>
             <th>Location</th>
@@ -17,10 +17,10 @@
           <% @products.each do |product| %>
             <tr>
               <td>
-                <%= Category.find(product.category_id).name %>
+                <%= product.name %>
               </td>
               <td>
-                <%= product.name %>
+                <%= Category.find(product.category_id).name %>
               </td>
               <td>
                 <%= link_to image_tag product.image.url(:thumb), :class => "product" %>
