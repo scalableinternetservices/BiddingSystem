@@ -38,6 +38,9 @@
                 <%= @locations[@product.location_id] %>
               </p>
           </div>
+          <div class="field">
+            <%= link_to image_tag @product.image.url(:original) %>
+          </div>
           
           
           <%= form_for( @product, :url => my_products_products_path( @product ), :html => { :method => :get } ) do |f| %>
