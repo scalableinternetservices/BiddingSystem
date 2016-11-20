@@ -20,12 +20,18 @@ class SellersController < UsersController
             bid_start_date = nil
             bid_start_time = nil
         else
-            bid_start_date = params[:products_under_bid][:bid_start_date]
-            bid_start_time = params[:products_under_bid][:bid_start_time]
+            bid_start_date = Date.civil(params[:products_under_bid][:"bid_start_date(1i)"].to_i,
+                         params[:products_under_bid][:"bid_start_date(2i)"].to_i,
+                         params[:products_under_bid][:"bid_start_date(3i)"].to_i)
+            bid_start_time = params[:products_under_bid][:"bid_start_time(4i)"] + ":" +
+                         params[:products_under_bid][:"bid_start_time(5i)"]
         end
         
-        bid_end_date = params[:products_under_bid][:bid_end_date]
-        bid_end_time = params[:products_under_bid][:bid_end_time]
+        bid_end_date = Date.civil(params[:products_under_bid][:"bid_end_date(1i)"].to_i,
+                         params[:products_under_bid][:"bid_end_date(2i)"].to_i,
+                         params[:products_under_bid][:"bid_end_date(3i)"].to_i)
+        bid_end_time = params[:products_under_bid][:"bid_end_time(4i)"] + ":" +
+                         params[:products_under_bid][:"bid_end_time(5i)"]
 
         ProductsUnderBid.start_bid?(product_id, minimum_bidding_price, bid_start_date, bid_start_time, bid_end_date, bid_end_time)
         

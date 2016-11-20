@@ -1,3 +1,4 @@
+require 'date'
 
 class ProductsUnderBid < ApplicationRecord
     
@@ -76,6 +77,38 @@ class ProductsUnderBid < ApplicationRecord
             highest_active_bid = highest_active_bid_record.first
             winner_id = highest_active_bid.user_id
             product_under_bid_record.update_attribute(:winner_id, winner_id)
+        end
+    end
+    
+    def self.decide_winner_when_bid_time_ends
+        
+        ProductsUnderBid.all.each do |products_under_bid|
+            if !products_under_bid.sell_status
+                bid_end_date = products_under_bid.bid_end_date
+                bid_end_time = products_under_bid.bid_end_time
+
+                time = bid_end_time.hour.to_s + ":" + bid_end_time.min.to_s + ":" + bid_end_time.sec.to_s
+                date_time = bid_end_date.to_s + " " + time
+                bid_end_date_time = Time.zone.parse(date_time).utc
+
+                if bid_end_date_time != nil
+                    flag_expired = Time.now > bid_end_date_time
+                    
+                    if flag_expired
+                        products_under_bid.update_attributes(:bid_status => false , :sell_status => true)
+                        products_under_bid.save!
+                        highest_active_bid_record = Bid.where("product_id" => products_under_bid.product_id, "bid_active" => true)
+                                                .order(bid_amount: :desc)
+                                                .limit(1)
+                        if !highest_active_bid_record.blank?
+                            highest_active_bid = highest_active_bid_record.first
+                            winner_id = highest_active_bid.user_id
+                            products_under_bid.update_attribute(:winner_id, winner_id)
+                            products_under_bid.save!
+                        end
+                    end
+                end
+            end
         end
     end
     
