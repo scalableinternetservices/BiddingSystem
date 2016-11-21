@@ -43,7 +43,7 @@
               <td>
                 <% if product.sell_status.nil? %>
                 <%= link_to 'Start Bid', bid_sellers_path(:product_id => product.product_id) %>
-                <% elsif product.sell_status == 'f' %>
+                <% elsif !product.sell_status %>
                 <%= link_to 'Stop Bid', stop_bid_sellers_path(:product_bid_id => product.product_bid_id) %>
                 <% end %>
               </td>
