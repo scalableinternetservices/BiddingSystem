@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
   def initialize
+    
     super
     @locations = ["", "Alabama", "Alaska", "Arizona", "Arkansas", 
                     "California", "Colorado", "Connecticut", "Delaware",
