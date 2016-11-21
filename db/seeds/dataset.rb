@@ -46,10 +46,13 @@ for i in 1..PRODUCT_COUNT
     name = 'product_' + i.to_s
     date_added = Date.today - rand(OLDEST_PRODUCT_ADDED_IS_NO_OLDER_THAN)
     location_id = rand(1..51)
-    products_records.push "(#{user_id}, #{category_id}, '#{name}', #{date_added}, #{location_id})"
+    image_file_name = 'product.jpg'
+    image_content_type = 'image/jpeg'
+    image_file_size = 16148
+    products_records.push "(#{user_id}, #{category_id}, '#{name}', #{date_added}, #{location_id}, '#{image_file_name}', '#{image_content_type}', #{image_file_size})"
 end
 
-sql = "INSERT INTO products (user_id, category_id, name, date_added, location_id) VALUES #{products_records.join(", ")}"
+sql = "INSERT INTO products (user_id, category_id, name, date_added, location_id, image_file_name, image_content_type, image_file_size) VALUES #{products_records.join(", ")}"
 CONN.execute sql
 
 

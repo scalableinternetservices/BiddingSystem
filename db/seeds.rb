@@ -12,16 +12,26 @@ Category.create(name: "Household", description: "Generic household items not bel
 
 
 # Populate Product table
-Product.create(user_id: 2, category_id: 4, name: "Mercedes F100", date_added: Date.today, location_id: 10)
-Product.create(user_id: 3, category_id: 2, name: "Nikon D5300", date_added: Date.today, location_id: 2)
-Product.create(user_id: 3, category_id: 8, name: "Jasmine S35 Acoustic Guitar", date_added: Date.today, location_id: 3)
-Product.create(user_id: 1, category_id: 2, name: "Canon EOS Rebel T5i", date_added: Date.today, location_id: 7)
-Product.create(user_id: 2, category_id: 4, name: "Nissan NV200", date_added: Date.today, location_id: 22)
-Product.create(user_id: 2, category_id: 2, name: "Nikon D5", date_added: Date.today, location_id: 2)
-Product.create(user_id: 2, category_id: 7, name: "Kutchina Fieona SS", date_added: Date.today, location_id: 2)
-Product.create(user_id: 1, category_id: 2, name: "Nikon D750", date_added: Date.today, location_id: 15)
-Product.create(user_id: 3, category_id: 5, name: "iPhone 6S", date_added: Date.today, location_id: 19)
-Product.create(user_id: 3, category_id: 9, name: "Macbook Pro 2016", date_added: Date.today, location_id: 16)
+Product.create(user_id: 2, category_id: 4, name: "Mercedes F100", date_added: Date.today, location_id: 10,
+                image_file_name: "product.jpg", image_content_type: "image/jpeg", image_file_size: 16148)
+Product.create(user_id: 3, category_id: 2, name: "Nikon D5300", date_added: Date.today, location_id: 2,
+                image_file_name: "product.jpg", image_content_type: "image/jpeg", image_file_size: 16148)
+Product.create(user_id: 3, category_id: 8, name: "Jasmine S35 Acoustic Guitar", date_added: Date.today, location_id: 3,
+                image_file_name: "product.jpg", image_content_type: "image/jpeg", image_file_size: 16148)
+Product.create(user_id: 1, category_id: 2, name: "Canon EOS Rebel T5i", date_added: Date.today, location_id: 7,
+                image_file_name: "product.jpg", image_content_type: "image/jpeg", image_file_size: 16148)
+Product.create(user_id: 2, category_id: 4, name: "Nissan NV200", date_added: Date.today, location_id: 22,
+                image_file_name: "product.jpg", image_content_type: "image/jpeg", image_file_size: 16148)
+Product.create(user_id: 2, category_id: 2, name: "Nikon D5", date_added: Date.today, location_id: 2,
+                image_file_name: "product.jpg", image_content_type: "image/jpeg", image_file_size: 16148)
+Product.create(user_id: 2, category_id: 7, name: "Kutchina Fieona SS", date_added: Date.today, location_id: 2,
+                image_file_name: "product.jpg", image_content_type: "image/jpeg", image_file_size: 16148)
+Product.create(user_id: 1, category_id: 2, name: "Nikon D750", date_added: Date.today, location_id: 15,
+                image_file_name: "product.jpg", image_content_type: "image/jpeg", image_file_size: 16148)
+Product.create(user_id: 3, category_id: 5, name: "iPhone 6S", date_added: Date.today, location_id: 19,
+                image_file_name: "product.jpg", image_content_type: "image/jpeg", image_file_size: 16148)
+Product.create(user_id: 3, category_id: 9, name: "Macbook Pro 2016", date_added: Date.today, location_id: 16,
+                image_file_name: "product.jpg", image_content_type: "image/jpeg", image_file_size: 16148)
 
 
 # Populate ProductsUnderBid table
