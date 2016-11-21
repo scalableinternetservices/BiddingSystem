@@ -6,7 +6,7 @@ abort("Specify the size of the data set: \n>>\t rails db:seed:dataset size=<data
 # Initialize seeding process
 CONN = ActiveRecord::Base.connection
 SEED = 0xDEADBEEF
-srand SEED
+srand SEED      # Predictable randomness helps in recreating the same test dataset across runs
 MINIMUM_BIDDING_PRICE = 100
 MAXIMUM_BIDDING_PRICE = 300
 PRODUCT_TO_START_BID_ON_PROBABILITY = 0.50
@@ -49,7 +49,7 @@ for i in 1..PRODUCT_COUNT
     image_file_name = 'product.jpg'
     image_content_type = 'image/jpeg'
     image_file_size = 16148
-    products_records.push "(#{user_id}, #{category_id}, '#{name}', #{date_added}, #{location_id}, '#{image_file_name}', '#{image_content_type}', #{image_file_size})"
+    products_records.push "(#{user_id}, #{category_id}, '#{name}', '#{date_added}', #{location_id}, '#{image_file_name}', '#{image_content_type}', #{image_file_size})"
 end
 
 sql = "INSERT INTO products (user_id, category_id, name, date_added, location_id, image_file_name, image_content_type, image_file_size) VALUES #{products_records.join(", ")}"
@@ -111,10 +111,10 @@ for product_id in 1..PRODUCT_COUNT
 end
 
 sql = "INSERT INTO products_under_bids (product_id, winner_id, minimum_bidding_price, maximum_bidding_price, bid_status, sell_status, bid_start_date, bid_start_time, bid_end_date, bid_end_time) VALUES #{products_unde_bids_records.join(", ")}"
-CONN.execute sql
+CONN.execute sql if products_unde_bids_records.size != 0
 
 sql = "INSERT INTO bids (product_id, user_id, bid_amount, bidding_date, bidding_time, bid_active) VALUES #{bids_records.join(", ")}"
-CONN.execute sql
+CONN.execute sql if bids_records.size != 0
 
 
 =begin

@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161027045400) do
+ActiveRecord::Schema.define(version: 20161022221427) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "bids", primary_key: "bid_id", force: :cascade do |t|
     t.integer "product_id"
@@ -35,7 +38,7 @@ ActiveRecord::Schema.define(version: 20161027045400) do
     t.string  "image_file_name"
     t.string  "image_content_type"
     t.integer "image_file_size"
-    t.index ["category_id"], name: "index_products_on_category_id"
+    t.index ["category_id"], name: "index_products_on_category_id", using: :btree
   end
 
   create_table "products_under_bids", primary_key: "product_bid_id", force: :cascade do |t|
@@ -49,7 +52,7 @@ ActiveRecord::Schema.define(version: 20161027045400) do
     t.time    "bid_start_time"
     t.date    "bid_end_date"
     t.time    "bid_end_time"
-    t.index ["product_id"], name: "index_products_under_bids_on_product_id"
+    t.index ["product_id"], name: "index_products_under_bids_on_product_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -63,8 +66,8 @@ ActiveRecord::Schema.define(version: 20161027045400) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
 end

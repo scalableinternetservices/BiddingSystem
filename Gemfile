@@ -17,7 +17,7 @@ gem "paperclip", "~> 4.2"
 gem 'aws-sdk', '~> 1.6'
 
 group :development, :test do
-  gem 'sqlite3', '1.3.11'
+  gem 'pg', '~> 0.19'
   gem 'byebug',  '9.0.0', platform: :mri
 end
 

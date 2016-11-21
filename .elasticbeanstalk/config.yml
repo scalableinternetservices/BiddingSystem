@@ -1,6 +1,8 @@
 branch-defaults:
   deploy:
     environment: biddingsystem-demo
+  load-image:
+    environment: biddingsystem-demo
   master:
     environment: biddingsystem-load-testing
 environment-defaults:
