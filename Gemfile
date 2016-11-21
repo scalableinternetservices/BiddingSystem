@@ -16,9 +16,8 @@ gem "devise"
 gem "paperclip", "~> 4.2"
 gem 'aws-sdk', '~> 1.6'
 
-group :development, :test do
-  gem 'pg', '~> 0.19'
-  gem 'byebug',  '9.0.0', platform: :mri
+group :test do
+  gem 'sqlite3', '1.3.11'
 end
 
 group :development do
@@ -28,7 +27,11 @@ group :development do
   gem 'spring-watcher-listen', '2.0.0'
 end
 
-group :production do
+group :development, :test do
+  gem 'byebug',  '9.0.0', platform: :mri
+end
+
+group :development, :production do
   gem 'pg', '~> 0.19'
 end
 
