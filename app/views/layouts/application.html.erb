@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 	<%= render "head" %>
+	
 	<body>
 		<%= render "menubar" %>
 		<div class="container">
+		<% if notice %>
+			<%= puts "notice" %>		
+			<div id = "notice_wraper">
+				<p class="notice"><%= notice %></p>
+			</div>
+		<% elsif alert %>
+			<%= puts "alert" %>
+			<div id = "notice_wraper">
+				<p class="alert"><%= alert %></p>
+			</div>
+		<% end %>
 			<div class="row">
 				<%= render "sidebar" %>
 				<%= render "header" %>
-				<p class="notice"><%= notice %></p>
-				<p class="alert"><%= alert %></p>
 				<%= yield %>
 			</div>
 		</div>

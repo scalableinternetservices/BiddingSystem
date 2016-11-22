@@ -32,19 +32,19 @@
                 <%= @locations[product.location_id] %>
               </td>
               <td>
-                <%= link_to 'Show', product %>
+                <%= link_to 'Show', product, :class => "btn btn-default btn-sm" %>
               </td>
               <td>
-                <%= link_to 'Edit', edit_product_path(product) %>
+                <%= link_to 'Edit', edit_product_path(product), :class => "btn btn-default btn-sm" %>
               </td>
               <td>
-                <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %>
+                <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-default btn-sm" %>
               </td>
               <td>
                 <% if product.sell_status.nil? %>
-                <%= link_to 'Start Bid', bid_sellers_path(:product_id => product.product_id) %>
+                <%= link_to 'Start Bid', bid_sellers_path(:product_id => product.product_id), :class => "btn btn-default btn-sm" %>
                 <% elsif !product.sell_status %>
-                <%= link_to 'Stop Bid', stop_bid_sellers_path(:product_bid_id => product.product_bid_id) %>
+                <%= link_to 'Stop Bid', stop_bid_sellers_path(:product_bid_id => product.product_bid_id), :class => "btn btn-default btn-sm" %>
                 <% end %>
               </td>
             </tr>

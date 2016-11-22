@@ -11,5 +11,13 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
 //= require_tree .
+
+
+$(document).ready(function(){
+   setTimeout(function() {
+      $("#notice_wraper").fadeOut("slow");
+   }, 3000); 
+});
