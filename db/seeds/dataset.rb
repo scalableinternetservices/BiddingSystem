@@ -20,10 +20,15 @@ PRODUCT_COUNT = dataset_size
 
 
 # Populate User table
+encrypted_password = User.new(:password => 'password').encrypted_password
+users_records = []
 for i in 1..USER_COUNT
-    user = User.new :email => 'user' + i.to_s + '@bid.com', :password => 'password', :password_confirmation => 'password'
-    user.save!(:validate => false)
+    email = 'user' + i.to_s + '@bid.com'
+    users_records.push "('#{email}', '#{encrypted_password}')"
 end
+
+sql = "INSERT INTO users (email, encrypted_password) VALUES #{users_records.join(", ")}"
+CONN.execute sql
 
 
 # Populate Category table
