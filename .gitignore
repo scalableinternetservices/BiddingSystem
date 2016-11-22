@@ -22,3 +22,6 @@
 
 # Ignore eb config
 .elasticbeanstalk
+
+# Ignore paperclip file system storage path
+public/system
