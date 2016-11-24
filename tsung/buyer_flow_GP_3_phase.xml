@@ -7,7 +7,7 @@
   </clients>
   <!-- Server side setup -->
   <servers>
-      <server host="bidding-system-priyankabose.c9users.io" port="443" type="ssl"></server>
+      <server host="namegiven" port="80" type="tcp"></server>
   </servers>
 
   <load>
@@ -23,17 +23,6 @@
         <users arrivalrate="4" unit="second"></users>
     </arrivalphase>
 
-    <arrivalphase phase="4" duration="30" unit="second">
-        <users arrivalrate="8" unit="second"></users>
-    </arrivalphase>
-
-    <arrivalphase phase="5" duration="30" unit="second">
-        <users arrivalrate="16" unit="second"></users>
-    </arrivalphase>
-    
-    <arrivalphase phase="6" duration="30" unit="second">
-        <users arrivalrate="32" unit="second"></users>
-    </arrivalphase>
   </load>
 
   <options>
