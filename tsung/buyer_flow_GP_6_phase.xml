@@ -10,31 +10,31 @@
       <server host="bidding-system-priyankabose.c9users.io" port="443" type="ssl"></server>
   </servers>
 
-    <load>
-      <arrivalphase phase="1" duration="30" unit="second">
-          <users arrivalrate="1" unit="second"></users>
-      </arrivalphase>
+  <load>
+    <arrivalphase phase="1" duration="30" unit="second">
+        <users arrivalrate="1" unit="second"></users>
+    </arrivalphase>
 
-      <arrivalphase phase="2" duration="30" unit="second">
-          <users arrivalrate="2" unit="second"></users>
-      </arrivalphase>
+    <arrivalphase phase="2" duration="30" unit="second">
+        <users arrivalrate="2" unit="second"></users>
+    </arrivalphase>
 
-      <arrivalphase phase="3" duration="30" unit="second">
-          <users arrivalrate="4" unit="second"></users>
-      </arrivalphase>
+    <arrivalphase phase="3" duration="30" unit="second">
+        <users arrivalrate="4" unit="second"></users>
+    </arrivalphase>
 
-      <arrivalphase phase="4" duration="30" unit="second">
-          <users arrivalrate="8" unit="second"></users>
-      </arrivalphase>
+    <arrivalphase phase="4" duration="30" unit="second">
+        <users arrivalrate="8" unit="second"></users>
+    </arrivalphase>
 
-      <arrivalphase phase="5" duration="30" unit="second">
-          <users arrivalrate="16" unit="second"></users>
-      </arrivalphase>
-      
-      <arrivalphase phase="6" duration="30" unit="second">
-          <users arrivalrate="32" unit="second"></users>
-      </arrivalphase>
-    </load>
+    <arrivalphase phase="5" duration="30" unit="second">
+        <users arrivalrate="16" unit="second"></users>
+    </arrivalphase>
+    
+    <arrivalphase phase="6" duration="30" unit="second">
+        <users arrivalrate="32" unit="second"></users>
+    </arrivalphase>
+  </load>
 
   <options>
       <option name="global_ack_timeout" value="20000"></option>
@@ -44,7 +44,6 @@
   </options>
 
   <sessions>
-
     <session name="user-signup" probability="10" type="ts_http">
     <!--Sign Up and login-->
       <transaction name="signup">
@@ -65,7 +64,7 @@
         </setdynvars>
 
 
-        <setdynvars sourcetype="random_number" start="1" end="9999">
+        <setdynvars sourcetype="random_number" start="1" end="10000">
           <var name="random_email_number" />
         </setdynvars>
 
@@ -94,7 +93,7 @@
           <var name="authenticity_token" />
         </setdynvars>
 
-        <setdynvars sourcetype="random_number" start="1" end="10000">
+        <setdynvars sourcetype="random_number" start="1" end="10">
           <var name="random_email_number" />
         </setdynvars>
 
@@ -138,15 +137,19 @@
 
         <request>
           <dyn_variable name="authenticity_token"></dyn_variable>
-          <dyn_variable name="place_bid_url" xpath="//table/tbody/tr[last()]/td[6]/a/@href" ></dyn_variable>
+          <dyn_variable name="place_bid_url" xpath="//table/tbody/tr[last()]/td[7]/a/@href" ></dyn_variable>
           <http url='/buyers/ongoing_auctions' version='1.1' method='GET'></http>
         </request>
 
         <request subst="true">
           <dyn_variable name="product_id" xpath="//input[@name='bid[product_id]']/@value"></dyn_variable>
-          <dyn_variable name="authenticity_token"></dyn_variable>
+          <dyn_variable name="authenticity_token" ></dyn_variable>
           <http url='%%_place_bid_url%%' method="GET" version="1.1"></http>
         </request>
+
+        <setdynvars sourcetype="eval" code="fun( {Pid, DynVars} ) -> io:format([126, $p, 126, $n, 126, $n], [DynVars]), ok end.">
+              <var name="value" />
+      </setdynvars>
 
         <setdynvars sourcetype="eval" code="fun({Pid,DynVars})-&gt;{ok,Val}=ts_dynvars:lookup(authenticity_token,DynVars),re:replace(Val,&quot;[+]&quot;,&quot;%2B&quot;,[global, {return,list}]) end.">
           <var name="authenticity_token" />
@@ -164,7 +167,7 @@
       <transaction name="show_my_bids">
 
         <request subst="true">
-          <dyn_variable name="bid_show_url" xpath="//table/tbody/tr[last()]/td[5]/a/@href"></dyn_variable>
+          <dyn_variable name="bid_show_url" xpath="//table/tbody/tr[last()]/td[6]/a/@href"></dyn_variable>
           <http url='/buyers/my_bids' method="GET" version="1.1"></http>
         </request>
 
@@ -180,7 +183,7 @@
 
         <request>
           <dyn_variable name="authenticity_token"></dyn_variable>
-          <dyn_variable name="revoke_bid_url" xpath="//table/tbody/tr[last()]/td[7]/a/@href" ></dyn_variable>
+          <dyn_variable name="revoke_bid_url" xpath="//table/tbody/tr[last()]/td[8]/a/@href" ></dyn_variable>
           <http url='/buyers/ongoing_auctions' version='1.1' method='GET'></http>
         </request>
 
