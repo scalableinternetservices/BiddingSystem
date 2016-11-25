@@ -7,7 +7,7 @@
   </clients>
   <!-- Server side setup -->
   <servers>
-      <server host="bidding-system-priyankabose.c9users.io" port="80" type="tcp"></server>
+      <server host="bid-m3-2xlarge-4-3.pgptaur33p.us-west-2.elasticbeanstalk.com" port="80" type="tcp"></server>
   </servers>
   <load>
 
@@ -24,17 +24,16 @@
       </arrivalphase>
 
   </load>
-  
+
   <options>
       <option name="global_ack_timeout" value="20000"></option>
       <option type="ts_http" name="user_agent">
           <user_agent probability="100">Mozilla/5.0 (Windows; U; Windows NT 5.2; fr-FR; rv:1.7.8) Gecko/20050511 Firefox/1.0.4</user_agent>
       </option>
   </options>
-  
   <sessions>
-    
-    <session name="admin_session" probability="90" type="ts_http">
+
+    <session name="admin_session" probability="100" type="ts_http">
         <!--Sign Up and login-->
       <transaction name="login">
 
@@ -49,29 +48,29 @@
           <var name="authenticity_token" />
         </setdynvars>
 
-        <setdynvars sourcetype="random_number" start="1" end="10">
+        <setdynvars sourcetype="random_number" start="1" end="10000">
           <var name="random_email_number" />
         </setdynvars>
 
         <request subst="true">
           <http url="/users/sign_in" method="POST" version="1.1"
-          contents="utf8=%E2%9C%93&amp;authenticity_token=%%_authenticity_token%%&amp;user%5Bemail%5D=admin%%_random_email_number%%@bid.com&amp;user%5Bpassword%5D=password&amp;user%5Bremember_me%5D=0"></http>
+          contents="utf8=%E2%9C%93&amp;authenticity_token=%%_authenticity_token%%&amp;user%5Bemail%5D=user%%_random_email_number%%@bid.com&amp;user%5Bpassword%5D=password&amp;user%5Bremember_me%5D=0"></http>
         </request>
 
       </transaction>
 
       <thinktime value="2" random="true"></thinktime>
 
-			<transaction name="admin_add_category">
+            <transaction name="admin_add_category">
 
         <setdynvars sourcetype="random_number" start="1" end="9999">
           <var name="category_number" />
         </setdynvars>
 
-				<request>
+                <request>
           <dyn_variable name="authenticity_token"></dyn_variable>
-				  <http url='/categories/new' version='1.1' method='GET'></http>
-				</request>
+                  <http url='/categories/new' version='1.1' method='GET'></http>
+                </request>
 
         <thinktime value="2" random="true"></thinktime>
 
@@ -98,7 +97,7 @@
       </transaction>
 
       <transaction name="log_out">
-          
+
         <setdynvars sourcetype="eval" code="fun({Pid,DynVars})-&gt;{ok,Val}=ts_dynvars:lookup(authenticity_token,DynVars),re:replace(Val,&quot;[+]&quot;,&quot;%2B&quot;,[global, {return,list}]) end.">
             <var name="authenticity_token" />
         </setdynvars>
@@ -108,12 +107,12 @@
         </request>
 
       </transaction>
-            
+
       <setdynvars sourcetype="eval" code="fun( {Pid, DynVars} ) -> io:format([126, $p, 126, $n, 126, $n], [DynVars]), ok end.">
         <var name="value" />
       </setdynvars>
 
-		</session>
+        </session>
 
   </sessions>
 </tsung>

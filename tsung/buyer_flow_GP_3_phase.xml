@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <!DOCTYPE tsung SYSTEM "/usr/local/Cellar/tsung/1.6.0/share/tsung/tsung-1.0.dtd">
-<tsung loglevel="notice" dumptraffic="true" version="1.0">
+<tsung loglevel="notice" dumptraffic="protocol" version="1.0">
     <!-- Client side setup -->
   <clients>
       <client host="localhost" use_controller_vm="true" maxusers="15000" />
   </clients>
   <!-- Server side setup -->
   <servers>
-      <server host="namegiven" port="80" type="tcp"></server>
+      <server host="bid-m3-2xlarge-4-3.pgptaur33p.us-west-2.elasticbeanstalk.com" port="80" type="tcp"></server>
   </servers>
 
   <load>
@@ -33,40 +33,8 @@
   </options>
 
   <sessions>
-    <session name="user-signup" probability="10" type="ts_http">
-    <!--Sign Up and login-->
-      <transaction name="signup">
 
-        <request>
-          <http url='/' version='1.1' method='GET'></http>
-        </request>
-
-        <request>
-          <dyn_variable name="authenticity_token"></dyn_variable>
-          <http url="/users/sign_up" version='1.1' method='GET'></http>
-        </request>
-
-        <thinktime value="2" random="true"></thinktime>
-
-        <setdynvars sourcetype="eval" code="fun({Pid,DynVars})-&gt;{ok,Val}=ts_dynvars:lookup(authenticity_token,DynVars),re:replace(Val,&quot;[+]&quot;,&quot;%2B&quot;,[global, {return,list}]) end.">
-          <var name="authenticity_token" />
-        </setdynvars>
-
-
-        <setdynvars sourcetype="random_number" start="1" end="10000">
-          <var name="random_email_number" />
-        </setdynvars>
-
-        <request subst="true">
-          <http url="/users" method="POST" version="1.1"
-          contents="utf8=%E2%9C%93&amp;authenticity_token=%%_authenticity_token%%&amp;user%5Bemail%5D=tsung%%_random_email_number%%@bid.com&amp;user%5Bpassword%5D=password&amp;user%5Bpassword_confirmation%5D=password&amp;commit=Sign+up"></http>
-        </request>
-      
-      </transaction>
-
-    </session>
-    
-    <session name="buyer-session" probability="90" type="ts_http">
+    <session name="buyer-session" probability="100" type="ts_http">
         <!--Sign Up and login-->
 
       <transaction name="login">
@@ -82,7 +50,7 @@
           <var name="authenticity_token" />
         </setdynvars>
 
-        <setdynvars sourcetype="random_number" start="1" end="10">
+        <setdynvars sourcetype="random_number" start="1" end="10000">
           <var name="random_email_number" />
         </setdynvars>
 
@@ -93,11 +61,11 @@
 
       </transaction>
 
-			<transaction name="buyer_search_products">
+      <transaction name="buyer_search_products">
 
-				<request>
-				  <http url='/' version='1.1' method='GET'></http>
-				</request>
+        <request>
+          <http url='/' version='1.1' method='GET'></http>
+        </request>
 
         <request>
           <dyn_variable name="category_count" xpath="count(//select[@name='search[category_id]']/option)" ></dyn_variable>
@@ -121,7 +89,7 @@
       </transaction>
 
       <thinktime value="2" random="true"></thinktime>
-        
+
       <transaction name="buyer_ongoing_auctions_place_bid">
 
         <request>
@@ -148,21 +116,24 @@
           <http url="/buyers/place_bid" method="POST" version="1.1"
           contents="utf8=%E2%9C%93&amp;authenticity_token=%%_authenticity_token%%&amp;bid%5Bproduct_id%5D=%%_product_id%%&amp;bid%5Bbid_amount%5D=101"></http>
         </request>
-            
+
       </transaction>
-      
+
       <thinktime value="3" random="true"></thinktime>
 
       <transaction name="show_my_bids">
 
         <request subst="true">
+          <dyn_variable name="bid_type" xpath="//table/tbody/tr[last()]/td[6]/a/text()"></dyn_variable>
           <dyn_variable name="bid_show_url" xpath="//table/tbody/tr[last()]/td[6]/a/@href"></dyn_variable>
           <http url='/buyers/my_bids' method="GET" version="1.1"></http>
         </request>
 
-        <request subst="true">
-          <http url= "%%_bid_show_url%%" version="1.1" method="GET"></http>
-        </request>
+        <if var="bid_show_url" neq="">
+          <request subst="true">
+            <http url= "%%_bid_show_url%%" version="1.1" method="GET"></http>
+          </request>
+        </if>
 
       </transaction>
 
@@ -179,7 +150,7 @@
         <request subst="true">
           <http url='%%_revoke_bid_url%%' method="GET" version="1.1"></http>
         </request>
-          
+
       </transaction>
 
       <transaction name="products_bought">
@@ -188,11 +159,11 @@
           <dyn_variable name="authenticity_token" xpath="//meta[@name='csrf-token']/@content"></dyn_variable>
           <http url='/buyers/bought' method="GET" version="1.1"></http>
         </request>
-          
+
       </transaction>
 
       <transaction name="log_out">
-          
+
         <setdynvars sourcetype="eval" code="fun({Pid,DynVars})-&gt;{ok,Val}=ts_dynvars:lookup(authenticity_token,DynVars),re:replace(Val,&quot;[+]&quot;,&quot;%2B&quot;,[global, {return,list}]) end.">
             <var name="authenticity_token" />
         </setdynvars>
@@ -202,12 +173,12 @@
         </request>
 
       </transaction>
-        
+
       <setdynvars sourcetype="eval" code="fun( {Pid, DynVars} ) -> io:format([126, $p, 126, $n, 126, $n], [DynVars]), ok end.">
               <var name="value" />
       </setdynvars>
 
-		</session>
+    </session>
 
   </sessions>
 
