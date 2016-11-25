@@ -1,9 +1,22 @@
+require 'rubygems'
+require 'dalli'
+
 class ProductsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   def my_products
-    @products = Product.select("products.product_id, category_id, name, date_added, location_id, product_bid_id, sell_status").where(:user_id => current_user.id).paginate(page: params[:page], per_page: 10).joins('LEFT OUTER JOIN products_under_bids ON products.product_id = products_under_bids.product_id')
+    cache_key = "my_products_#{current_user.id}"
+    my_products_record = CACHE.get(cache_key)
+    if (my_products_record)
+      @products = my_products_record.paginate(page: params[:page], per_page: 10)
+      puts "my products record from cache"
+    else
+      @products = Product.select("products.product_id, category_id, name, date_added, location_id, product_bid_id, sell_status").where(:user_id => current_user.id).paginate(page: params[:page], per_page: 10).joins('LEFT OUTER JOIN products_under_bids ON products.product_id = products_under_bids.product_id')
+      CACHE.set(cache_key, @products, 120)
+      puts "my products record from database"
+    end
+    @products
   end
 
   def show

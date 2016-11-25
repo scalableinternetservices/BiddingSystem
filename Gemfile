@@ -17,6 +17,8 @@ gem "devise"
 gem "paperclip", "~> 4.2"
 gem 'aws-sdk', '~> 1.6'
 gem 'rufus-scheduler'
+gem 'dalli'
+gem 'dalli-elasticache'
 
 group :test do
   gem 'sqlite3', '1.3.11'

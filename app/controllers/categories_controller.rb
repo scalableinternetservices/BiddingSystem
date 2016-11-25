@@ -5,7 +5,16 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
   def index
-    @categories = Category.paginate(page: params[:page], per_page: 5)
+    cache_key = "category_record"
+    category_record = CACHE.get(cache_key)
+    if (category_record)
+      @categories = category_record.paginate(page: params[:page], per_page: 10)
+      puts "category record from cache"
+    else
+      CACHE.set(cache_key, Category.all, 24*60*60)
+      @categories = Category.paginate(page: params[:page], per_page: 10)
+      puts "category record from database"
+    end
   end
 
   # GET /categories/1

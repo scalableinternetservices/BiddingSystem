@@ -5,7 +5,16 @@ class BuyersController < UsersController
     end
     
     def bought
-        @products = Product.where(:user_id => current_user.id).joins('INNER JOIN products_under_bids ON products.product_id = products_under_bids.product_id').where('products_under_bids.sell_status' => true)
+        cache_key = "bought_by_#{current_user.id}"
+        user_bought_record = CACHE.get(cache_key)
+        if (user_bought_record)
+            @products = user_bought_record
+            puts "user bought record from cache"
+        else
+            @products = Product.where(:user_id => current_user.id).joins('INNER JOIN products_under_bids ON products.product_id = products_under_bids.product_id').where('products_under_bids.sell_status' => true)
+            CACHE.set(cache_key, @products, 3600)
+            puts "user bough record from database"
+        end
     end
     
     def search_products
@@ -24,9 +33,19 @@ class BuyersController < UsersController
     end
     
     def my_bids
-        @my_bids = Product.select("*").joins("INNER JOIN bids ON bids.product_id = products.product_id
+        cache_key = "my_bids_#{current_user.id}"
+        user_bids_record = CACHE.get(cache_key)
+        if (user_bids_record)
+            @my_bids = user_bids_record
+            puts "user bids record from cache"
+        else
+            @my_bids = Product.select("*").joins("INNER JOIN bids ON bids.product_id = products.product_id
                                     INNER JOIN products_under_bids ON products_under_bids.product_id = products.product_id")
                                     .where('bids.user_id' => current_user.id, 'bids.bid_active' => true)
+            CACHE.set(cache_key, @my_bids, 600) #user's bids list will not change within ten minutes
+            puts "user bid record from database"
+        end
+
     end
     
     def place_new_bid
@@ -53,7 +72,16 @@ class BuyersController < UsersController
         @already_placed_bid = []
         products.each do |product|
             if !current_user.nil?
-                placed_bid = Bid.where('product_id' => product.product_id, "user_id" => current_user.id, "bid_active" => true)
+                cache_key = "placed_bids_#{current_user.id}"
+                user_placed_bids_record = CACHE.get(cache_key)
+                if (user_placed_bids_record)
+                    placed_bid = user_placed_bids_record
+                    puts "ongoing auction placed bid record from cache"
+                else
+                    placed_bid = Bid.where('product_id' => product.product_id, "user_id" => current_user.id, "bid_active" => true)
+                    CACHE.set(cache_key, placed_bid, 120) #user's placed bids record will not change within two minutes
+                    puts "ongoing auction placed bid record from database"
+                end
                 if !placed_bid.blank?
                     @already_placed_bid << placed_bid.first.bid_amount
                 else

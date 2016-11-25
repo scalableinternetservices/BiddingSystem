@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   before_action :random_latest_products
   protect_from_forgery with: :exception
   
+  CACHE = Dalli::Client.new("biddingsystem.dgkfha.0001.usw2.cache.amazonaws.com:11211", { :expires_in => 1.day, :compress => true })
+  
   def initialize
     
     super
