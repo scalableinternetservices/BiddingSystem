@@ -70,14 +70,17 @@ class ProductsUnderBid < ApplicationRecord
     
     def self.decide_winner(product_under_bid_record)
         # Get a list of active bids on this product
-        highest_active_bid_record = Bid.where("product_id" => product_under_bid_record.product_id, "bid_active" => true)
-                                        .order(bid_amount: :desc)
-                                        .limit(1)
-        if !highest_active_bid_record.blank?
-            highest_active_bid = highest_active_bid_record.first
-            winner_id = highest_active_bid.user_id
-            product_under_bid_record.update_attribute(:winner_id, winner_id)
-        end
+        #highest_active_bid_record = Bid.where("product_id" => product_under_bid_record.product_id, "bid_active" => true)
+        #                                .order(bid_amount: :desc)
+        #                                .limit(1)
+        #if !highest_active_bid_record.blank?
+        #    highest_active_bid = highest_active_bid_record.first
+        #    winner_id = highest_active_bid.user_id
+        #    product_under_bid_record.update_attribute(:winner_id, winner_id)
+        #end
+        highest_active_bid_record=Bid.find_by(product_id: params[:product_id], bid_amount: params[:product_under_bid_record.maximum_bidding_price])
+        winner_id = highest_active_bid_record.user_id
+        product_under_bid_record.update_attribute(:winner_id, winner_id)
     end
     
     def self.decide_winner_when_bid_time_ends
