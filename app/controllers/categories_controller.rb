@@ -6,6 +6,7 @@ class CategoriesController < ApplicationController
   # GET /categories.json
   def index
     @categories = Category.paginate(page: params[:page], per_page: 5)
+    expires_in 2.hours, :public => true 
   end
 
   # GET /categories/1

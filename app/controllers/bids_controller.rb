@@ -44,7 +44,7 @@ class BidsController < ApplicationController
     
     product_id = params[:bid][:product_id]
     @bidslist = Bid.get_all_the_bids(product_id)
-    
+    expires_in 30.seconds, :public => true
     respond_to do |format|
       format.html { redirect_to @bidslist, notice: 'Products under bid was successfully created.' }
       format.json { render json: @bidslist }
@@ -66,6 +66,7 @@ class BidsController < ApplicationController
 
   def show
     @bid = Bid.find(params[:bid_id])
+    
   end
     
   private

@@ -20,6 +20,7 @@ class BuyersController < UsersController
     
     def ongoing_auctions
         @products_under_bid = ProductsUnderBid.get_products_under_bid
+        expires_in 1.minutes, :public => true
         get_already_placed_bids(@products_under_bid)
     end
     
@@ -27,6 +28,7 @@ class BuyersController < UsersController
         @my_bids = Product.select("*").joins("INNER JOIN bids ON bids.product_id = products.product_id
                                     INNER JOIN products_under_bids ON products_under_bids.product_id = products.product_id")
                                     .where('bids.user_id' => current_user.id, 'bids.bid_active' => true)
+        expires_in 30.seconds, :private => true
     end
     
     def place_new_bid
