@@ -8,6 +8,8 @@ class CreateBids < ActiveRecord::Migration[5.0]
       t.date :bidding_date
       t.time :bidding_time
       t.boolean :bid_active
+      t.datetime "created_at",       null: false
+      t.datetime "updated_at",       null: false
     end
   end
 end

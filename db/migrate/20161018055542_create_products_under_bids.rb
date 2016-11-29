@@ -12,6 +12,8 @@ class CreateProductsUnderBids < ActiveRecord::Migration[5.0]
       t.time :bid_start_time
       t.date :bid_end_date
       t.time :bid_end_time
+      t.datetime "created_at",       null: false
+      t.datetime "updated_at",       null: false
       t.belongs_to :product, index: true
     end
   end

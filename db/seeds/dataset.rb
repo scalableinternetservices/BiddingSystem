@@ -36,10 +36,12 @@ categories_records = []
 for i in 1..CATEGORY_COUNT
     name = 'category_' + i.to_s
     description = 'this_is_the_description_of_category_' + i.to_s
-    categories_records.push "('#{name}', '#{description}')"
+    created_at = Time.zone.now
+    updated_at = Time.zone.now
+    categories_records.push "('#{name}', '#{description}', '#{created_at}', '#{updated_at}')"
 end
 
-sql = "INSERT INTO categories (name, description) VALUES #{categories_records.join(", ")}"
+sql = "INSERT INTO categories (name, description, created_at, updated_at) VALUES #{categories_records.join(", ")}"
 CONN.execute sql
 
 
@@ -54,10 +56,12 @@ for i in 1..PRODUCT_COUNT
     image_file_name = 'product.jpg'
     image_content_type = 'image/jpeg'
     image_file_size = 16148
-    products_records.push "(#{user_id}, #{category_id}, '#{name}', '#{date_added}', #{location_id}, '#{image_file_name}', '#{image_content_type}', #{image_file_size})"
+    created_at = Time.zone.now
+    updated_at = Time.zone.now
+    products_records.push "(#{user_id}, #{category_id}, '#{name}', '#{date_added}', #{location_id}, '#{image_file_name}', '#{image_content_type}', #{image_file_size}, '#{created_at}', '#{updated_at}')"
 end
 
-sql = "INSERT INTO products (user_id, category_id, name, date_added, location_id, image_file_name, image_content_type, image_file_size) VALUES #{products_records.join(", ")}"
+sql = "INSERT INTO products (user_id, category_id, name, date_added, location_id, image_file_name, image_content_type, image_file_size, created_at, updated_at) VALUES #{products_records.join(", ")}"
 CONN.execute sql
 
 
@@ -82,6 +86,8 @@ for product_id in 1..PRODUCT_COUNT
     bid_end_date = bid_start_date + rand(BID_END_DATE_POSITIVE_OFFSET)
     bid_end_time_sec = (bid_start_time_sec + ((rand(24) * 60 + rand(60)) * 60 + rand(60)))
     bid_end_time = bid_end_time_sec.to_formatted_s(:time)
+    created_at = Time.zone.now
+    updated_at = Time.zone.now
     
     # Generate data for Bid table
     # Select this product to place bid on with probability between [0..PRODUCT_TO_PLACE_BID_ON_PROBABILITY]
@@ -90,7 +96,7 @@ for product_id in 1..PRODUCT_COUNT
     # What if no user is placing bid on the product?
     if place_bid_probability > PRODUCT_TO_PLACE_BID_ON_PROBABILITY
         maximum_bidding_price = 0
-        products_unde_bids_records.push "(#{product_id}, #{winner_id}, #{minimum_bidding_price}, #{maximum_bidding_price}, '#{bid_status}', '#{sell_status}', '#{bid_start_date}', '#{bid_start_time}', '#{bid_end_date}', '#{bid_end_time}')"
+        products_unde_bids_records.push "(#{product_id}, #{winner_id}, #{minimum_bidding_price}, #{maximum_bidding_price}, '#{bid_status}', '#{sell_status}', '#{bid_start_date}', '#{bid_start_time}', '#{bid_end_date}', '#{bid_end_time}', '#{created_at}', '#{updated_at}')"
         next
     end
     
@@ -108,17 +114,17 @@ for product_id in 1..PRODUCT_COUNT
         user_id += rand(1..user_count_to_place_bid_on_the_product)      # Generate next user to bid on the product
         
         # Push the Bid record    
-        bids_records.push "(#{product_id}, #{user_id}, #{bid_amount}, '#{bidding_date}', '#{bidding_time}', '#{bid_active}')"
+        bids_records.push "(#{product_id}, #{user_id}, #{bid_amount}, '#{bidding_date}', '#{bidding_time}', '#{bid_active}', '#{created_at}', '#{updated_at}')"
     end
     
     # Push the ProductsUnderBid record
-    products_unde_bids_records.push "(#{product_id}, #{winner_id}, #{minimum_bidding_price}, #{maximum_bidding_price}, '#{bid_status}', '#{sell_status}', '#{bid_start_date}', '#{bid_start_time}', '#{bid_end_date}', '#{bid_end_time}')"
+    products_unde_bids_records.push "(#{product_id}, #{winner_id}, #{minimum_bidding_price}, #{maximum_bidding_price}, '#{bid_status}', '#{sell_status}', '#{bid_start_date}', '#{bid_start_time}', '#{bid_end_date}', '#{bid_end_time}', '#{created_at}', '#{updated_at}')"
 end
 
-sql = "INSERT INTO products_under_bids (product_id, winner_id, minimum_bidding_price, maximum_bidding_price, bid_status, sell_status, bid_start_date, bid_start_time, bid_end_date, bid_end_time) VALUES #{products_unde_bids_records.join(", ")}"
+sql = "INSERT INTO products_under_bids (product_id, winner_id, minimum_bidding_price, maximum_bidding_price, bid_status, sell_status, bid_start_date, bid_start_time, bid_end_date, bid_end_time, created_at, updated_at) VALUES #{products_unde_bids_records.join(", ")}"
 CONN.execute sql if products_unde_bids_records.size != 0
 
-sql = "INSERT INTO bids (product_id, user_id, bid_amount, bidding_date, bidding_time, bid_active) VALUES #{bids_records.join(", ")}"
+sql = "INSERT INTO bids (product_id, user_id, bid_amount, bidding_date, bidding_time, bid_active, created_at, updated_at) VALUES #{bids_records.join(", ")}"
 CONN.execute sql if bids_records.size != 0
 
 
