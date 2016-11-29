@@ -14,6 +14,7 @@
 
         <tbody>
           <% @categories.each do |category| %>
+            <% cache(cache_key_for_categories(category)) do %>
             <tr>
               <td>
                 <%= category.name %>
@@ -32,6 +33,7 @@
               </td>
             </tr>
             <% end %>
+          <% end %>
         </tbody>
       </table>
       <div id="paginate">

@@ -19,6 +19,7 @@
         <tbody>
           <% products.each_with_index do |product, product_index| %>
             <tr>
+              <% cache(cache_key_for_my_bids(product)) do %>
               <td>
                 <%= link_to product.name, bids_products_path(:product_id => product.product_id) %>
               </td>
@@ -34,6 +35,7 @@
               <td>
                 <%= @already_placed_bid.present? ? @already_placed_bid[product_index] : product.bid_amount %>/<%= product.maximum_bidding_price %>
               </td>
+              <% end %>
               <td>
                 <%= link_to 'Show', product %>
               </td>

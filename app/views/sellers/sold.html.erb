@@ -15,6 +15,7 @@
 
         <tbody>
           <% @products.each do |product| %>
+            <% cache(cache_key_for_products(product)) do %>
             <tr>
               <td>
                 <%= link_to product.name, bids_products_path(:product_id => product.product_id) %>
@@ -33,6 +34,7 @@
               </td>
             </tr>
             <% end %>
+          <% end %>
         </tbody>
       </table>
     </div>
