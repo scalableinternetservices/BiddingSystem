@@ -19,7 +19,7 @@ class BuyersController < UsersController
     end
     
     def ongoing_auctions
-        @products_under_bid = ProductsUnderBid.get_products_under_bid
+        @products_under_bid = OngoingAuctions.all
         get_already_placed_bids(@products_under_bid)
     end
     

@@ -1,0 +1,48 @@
+<div class="col-md-9">
+  <div class="panel panel-primary">
+    <div class="panel-heading"><%= action %></div>
+    <div class="panel-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Category</th>
+            <th>Location</th>
+            <th>Your bid/Highest bid</th>
+            <th colspan="3"></th>
+            <th colspan="3"></th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% products.each_with_index do |product, product_index| %>
+            <tr>
+              <td>
+                <%= link_to product.name, bids_products_path(:product_id => product.product_id) %>
+              </td>
+              <td>
+                <%= Category.find(product.category_id).name %>
+              </td>
+              <td>
+                <%= @locations[product.location_id] %>
+              </td>
+              <td>
+                <%= @already_placed_bid.present? ? @already_placed_bid[product_index] : product.bid_amount %>/<%= product.maximum_bidding_price %>
+              </td>
+              <td>
+                <%= link_to 'Show', product.becomes(Product) %>
+              </td>
+              <td>
+                <%= link_to 'Place Bid', place_new_bid_buyers_path(:product_id => product.product_id, :highest_bid => product.maximum_bidding_price) %>
+              </td>
+              <td>
+                <%= link_to 'Revoke Bid', revoke_bid_buyers_path(:product_id => product.product_id) %>
+              </td>
+            </tr>
+            <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
