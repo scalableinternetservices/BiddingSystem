@@ -2,6 +2,7 @@
   <div class="panel panel-primary">
     <div class="panel-heading">Products</div>
     <div class="panel-body">
+      <% cache(cache_key_for_products_table(@products)) do %>
       <table class="table">
         <thead>
           <tr>
@@ -37,6 +38,7 @@
           <% end %>
         </tbody>
       </table>
+      <% end %>
     </div>
   </div>
 </div>

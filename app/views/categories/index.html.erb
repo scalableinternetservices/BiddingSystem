@@ -3,6 +3,7 @@
   <div class="panel panel-primary">
     <div class="panel-heading">Categories</div>
     <div class="panel-body">
+      <% cache(cache_key_for_categories_table(@categories, @page)) do %>
       <table id="categories" class="table">
         <thead>
           <tr>
@@ -36,6 +37,7 @@
           <% end %>
         </tbody>
       </table>
+      <% end %>
       <div id="paginate">
         <%= will_paginate @categories, renderer: BootstrapPagination::Rails %>
       </div>
