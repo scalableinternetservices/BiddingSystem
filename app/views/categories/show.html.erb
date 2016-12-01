@@ -3,6 +3,7 @@
         <div class="panel-heading">View Category</div>
         <div class="panel-body">
           
+          <% cache(cache_key_for_categories_show(@category)) do %>
           <div class="field">
               <p id="notice"><%= notice %>
           </div>
@@ -26,7 +27,7 @@
                   <p> <%= f.submit 'Back', class: "btn btn-success" %> </p>
               </div>
           <% end %>
-          
+          <% end %>
         </div>
     </div>
 </div>
