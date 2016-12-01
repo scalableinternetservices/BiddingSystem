@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161022221427) do
+ActiveRecord::Schema.define(version: 20161125010316) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,9 @@ ActiveRecord::Schema.define(version: 20161022221427) do
     t.boolean  "bid_active"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.index ["bid_active"], name: "index_bids_on_bid_active", using: :btree
+    t.index ["product_id"], name: "index_bids_on_product_id", using: :btree
+    t.index ["user_id"], name: "index_bids_on_user_id", using: :btree
   end
 
   create_table "categories", primary_key: "category_id", force: :cascade do |t|
@@ -45,6 +48,8 @@ ActiveRecord::Schema.define(version: 20161022221427) do
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.index ["category_id"], name: "index_products_on_category_id", using: :btree
+    t.index ["location_id"], name: "index_products_on_location_id", using: :btree
+    t.index ["user_id"], name: "index_products_on_user_id", using: :btree
   end
 
   create_table "products_under_bids", primary_key: "product_bid_id", force: :cascade do |t|
@@ -60,6 +65,7 @@ ActiveRecord::Schema.define(version: 20161022221427) do
     t.time     "bid_end_time"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
+    t.index ["bid_status", "sell_status"], name: "index_products_under_bids_on_bid_status_and_sell_status", using: :btree
     t.index ["product_id"], name: "index_products_under_bids_on_product_id", using: :btree
   end
 
