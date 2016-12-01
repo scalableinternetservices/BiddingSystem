@@ -30,6 +30,7 @@ class BuyersController < UsersController
         @products_under_bid = ProductsUnderBid.get_products_under_bid
         @products_under_bid = @products_under_bid.paginate(:page => params[:page],:per_page => 10)
         get_already_placed_bids(@products_under_bid)
+        expires_in 1.minutes, :public => true
     end
     
     def my_bids
@@ -37,6 +38,7 @@ class BuyersController < UsersController
                                     INNER JOIN products_under_bids ON products_under_bids.product_id = products.product_id")
                                     .where('bids.user_id' => current_user.id, 'bids.bid_active' => true)
                                     .paginate(page: params[:page], per_page: 10)
+        expires_in 30.seconds, :private => true
     end
     
     def place_new_bid

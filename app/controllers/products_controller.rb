@@ -4,7 +4,9 @@ class ProductsController < ApplicationController
 
   def my_products
     @products = Product.select("products.product_id, category_id, name, date_added, location_id, product_bid_id, sell_status").where(:user_id => current_user.id).paginate(page: params[:page], per_page: 10).joins('LEFT OUTER JOIN products_under_bids ON products.product_id = products_under_bids.product_id')
+    expires_in 30.minutes, :public => true
   end
+  
 
   def show
   end
